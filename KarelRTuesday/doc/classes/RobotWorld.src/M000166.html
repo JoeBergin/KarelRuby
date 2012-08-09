@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>show_world_with_robots (RobotWorld)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File karel/tk_robot_world.rb, line 351</span>
+   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_world_with_robots</span>(<span class="ruby-identifier">startStreet</span>=<span class="ruby-value">1</span>, <span class="ruby-identifier">startAvenue</span>=<span class="ruby-value">1</span>, <span class="ruby-identifier">streetsTowardNorth</span>=<span class="ruby-value">10</span>, <span class="ruby-identifier">avenuesTowardEast</span>=<span class="ruby-value">10</span>)
+        <span class="ruby-identifier">display</span> = <span class="ruby-identifier">get_display</span>(<span class="ruby-identifier">startStreet</span>, <span class="ruby-identifier">startAvenue</span>, <span class="ruby-identifier">streetsTowardNorth</span>, <span class="ruby-identifier">avenuesTowardEast</span>)
+        <span class="ruby-identifier">xBound</span> = <span class="ruby-value">2</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">streetsTowardNorth</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>
+        <span class="ruby-identifier">yBound</span> = <span class="ruby-value">2</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">avenuesTowardEast</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>
+        <span class="ruby-ivar">@robots</span>.<span class="ruby-identifier">each_key</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">robot</span><span class="ruby-operator">|</span>
+            <span class="ruby-identifier">value</span> = <span class="ruby-ivar">@robots</span>[<span class="ruby-identifier">robot</span>]
+            <span class="ruby-identifier">x</span>, <span class="ruby-identifier">y</span>, <span class="ruby-identifier">direction</span> = <span class="ruby-identifier">value</span>[<span class="ruby-value">0</span>], <span class="ruby-identifier">value</span>[<span class="ruby-value">1</span>], <span class="ruby-identifier">value</span>[<span class="ruby-value">2</span>]
+            <span class="ruby-identifier">x</span> = <span class="ruby-value">2</span> <span class="ruby-operator">*</span> (<span class="ruby-identifier">x</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">startStreet</span>) <span class="ruby-operator">+</span> <span class="ruby-value">1</span>
+            <span class="ruby-identifier">y</span> = <span class="ruby-value">2</span> <span class="ruby-operator">*</span> (<span class="ruby-identifier">y</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">startAvenue</span>)
+            <span class="ruby-identifier">displayCharacter</span> = {<span class="ruby-constant">Robota</span><span class="ruby-operator">::</span><span class="ruby-constant">NORTH</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">' ^ '</span>, <span class="ruby-constant">Robota</span><span class="ruby-operator">::</span><span class="ruby-constant">WEST</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">' &lt; '</span>, <span class="ruby-constant">Robota</span><span class="ruby-operator">::</span><span class="ruby-constant">SOUTH</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">' v '</span>, <span class="ruby-constant">Robota</span><span class="ruby-operator">::</span><span class="ruby-constant">EAST</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">' &gt; '</span>}
+            <span class="ruby-identifier">cell</span> = <span class="ruby-identifier">displayCharacter</span>[<span class="ruby-identifier">direction</span>]
+            <span class="ruby-identifier">display</span>[<span class="ruby-identifier">x</span>][<span class="ruby-identifier">y</span>] = <span class="ruby-identifier">cell</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">visible</span>(<span class="ruby-identifier">x</span>, <span class="ruby-identifier">y</span>, <span class="ruby-identifier">xBound</span>, <span class="ruby-identifier">yBound</span>)    
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-identifier">dump_display</span>(<span class="ruby-identifier">display</span>, <span class="ruby-identifier">startStreet</span>, <span class="ruby-identifier">startAvenue</span>, <span class="ruby-identifier">streetsTowardNorth</span>, <span class="ruby-identifier">avenuesTowardEast</span>)
+        <span class="ruby-keyword kw">nil</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

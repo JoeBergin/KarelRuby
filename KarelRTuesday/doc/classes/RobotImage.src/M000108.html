@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>new (RobotImage)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File karel/karel_window.rb, line 25</span>
+ <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">street</span> = <span class="ruby-value">1</span>, <span class="ruby-identifier">avenue</span> = <span class="ruby-value">1</span>, <span class="ruby-identifier">direction</span> = <span class="ruby-constant">NORTH</span>, <span class="ruby-identifier">color</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">window</span>)
+    <span class="ruby-ivar">@street</span> = <span class="ruby-identifier">street</span>
+    <span class="ruby-ivar">@avenue</span> = <span class="ruby-identifier">avenue</span>
+    <span class="ruby-ivar">@direction</span> = <span class="ruby-identifier">direction</span>
+    <span class="ruby-ivar">@canvas</span> = <span class="ruby-identifier">window</span>.<span class="ruby-identifier">canvas</span>
+    <span class="ruby-ivar">@color</span> = <span class="ruby-identifier">color</span>
+
+    <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span> <span class="ruby-identifier">$smallImages</span>
+      <span class="ruby-ivar">@@size</span> = <span class="ruby-value">37</span>
+      <span class="ruby-ivar">@@backset</span> = <span class="ruby-value">18</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-ivar">@scaler</span> = <span class="ruby-identifier">lambda</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">x</span>,<span class="ruby-identifier">y</span><span class="ruby-operator">|</span> <span class="ruby-identifier">window</span>.<span class="ruby-identifier">scale_to_pixels</span>(<span class="ruby-identifier">x</span>,<span class="ruby-identifier">y</span>)} <span class="ruby-comment cmt">#i.e. the function itself</span>
+    <span class="ruby-ivar">@scale_factor</span> = <span class="ruby-identifier">lambda</span>{<span class="ruby-identifier">window</span>.<span class="ruby-identifier">scale_factor</span>}
+    <span class="ruby-identifier">color</span> = <span class="ruby-identifier">:white</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@color</span> <span class="ruby-operator">==</span> <span class="ruby-keyword kw">nil</span>
+    <span class="ruby-ivar">@imageMap</span> = {}
+    <span class="ruby-identifier">$imageMapOn</span>.<span class="ruby-identifier">each_key</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">dir</span><span class="ruby-operator">|</span>
+      <span class="ruby-ivar">@imageMap</span>[<span class="ruby-identifier">dir</span>] = <span class="ruby-constant">TkLabel</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@canvas</span>, <span class="ruby-identifier">:bg</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">color</span>, <span class="ruby-identifier">:image</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">$imageMapOn</span>[<span class="ruby-identifier">dir</span>], <span class="ruby-identifier">:width</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@@size</span>, <span class="ruby-identifier">:height</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@@size</span>, <span class="ruby-identifier">:borderwidth</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>)
+    }
+    <span class="ruby-ivar">@image</span> = <span class="ruby-ivar">@imageMap</span>[<span class="ruby-identifier">direction</span>]
+
+    <span class="ruby-ivar">@imageMap</span>.<span class="ruby-identifier">inspect</span>
+    <span class="ruby-identifier">mx</span>, <span class="ruby-identifier">my</span> = <span class="ruby-identifier">scaler</span>(<span class="ruby-identifier">street</span>, <span class="ruby-identifier">avenue</span>)
+    
+    <span class="ruby-ivar">@image</span>.<span class="ruby-identifier">place</span>(<span class="ruby-identifier">:x</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">mx</span>, <span class="ruby-identifier">:y</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">my</span>)  
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

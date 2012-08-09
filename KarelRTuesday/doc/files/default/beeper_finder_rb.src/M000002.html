@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>task (default/beeper_finder.rb)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File default/beeper_finder.rb, line 24</span>
+<span class="ruby-keyword kw">def</span> <span class="ruby-identifier">task</span>
+  <span class="ruby-identifier">world</span> = <span class="ruby-constant">RobotWorld</span>.<span class="ruby-identifier">instance</span>()
+  <span class="ruby-identifier">world</span>.<span class="ruby-identifier">read_world</span>(<span class="ruby-value str">&quot;../worlds/fig6-8.kwld&quot;</span>)
+  <span class="ruby-identifier">world</span>.<span class="ruby-identifier">place_beepers</span>(<span class="ruby-value">5</span>, <span class="ruby-value">3</span>, <span class="ruby-value">1</span>)
+  <span class="ruby-identifier">world</span>.<span class="ruby-identifier">remove_all_beepers</span>(<span class="ruby-value">2</span>, <span class="ruby-value">5</span>)
+  <span class="ruby-identifier">jones</span> = <span class="ruby-constant">BeeperFinder</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">5</span>, <span class="ruby-value">2</span>, <span class="ruby-constant">SOUTH</span>, <span class="ruby-value">30</span>)
+  <span class="ruby-identifier">jones</span>.<span class="ruby-identifier">find_beeper</span>()
+<span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

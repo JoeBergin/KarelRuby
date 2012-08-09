@@ -1,0 +1,891 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: RobotWorld</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">RobotWorld</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../files/karel/robot_world_rb.html">
+                karel/robot_world.rb
+                </a>
+        <br />
+                <a href="../files/karel/tk_robot_world_rb.html">
+                karel/tk_robot_world.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                <a href="RobotWorldBase.html">
+                RobotWorldBase
+               </a>
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+A graphical robot world based on tk graphics. Interacts with <a
+href="KarelWindow.html">KarelWindow</a>.
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000148">beepers_at?</a>&nbsp;&nbsp;
+      <a href="#M000126">clear</a>&nbsp;&nbsp;
+      <a href="#M000164">dump_display</a>&nbsp;&nbsp;
+      <a href="#M000163">get_display</a>&nbsp;&nbsp;
+      <a href="#M000125">instance</a>&nbsp;&nbsp;
+      <a href="#M000143">instance</a>&nbsp;&nbsp;
+      <a href="#M000127">name</a>&nbsp;&nbsp;
+      <a href="#M000145">name</a>&nbsp;&nbsp;
+      <a href="#M000142">new</a>&nbsp;&nbsp;
+      <a href="#M000128">place_beeper</a>&nbsp;&nbsp;
+      <a href="#M000129">place_beepers</a>&nbsp;&nbsp;
+      <a href="#M000149">place_beepers</a>&nbsp;&nbsp;
+      <a href="#M000132">place_wall_east_of</a>&nbsp;&nbsp;
+      <a href="#M000154">place_wall_east_of</a>&nbsp;&nbsp;
+      <a href="#M000131">place_wall_north_of</a>&nbsp;&nbsp;
+      <a href="#M000150">place_wall_north_of</a>&nbsp;&nbsp;
+      <a href="#M000153">place_wall_south_of</a>&nbsp;&nbsp;
+      <a href="#M000152">place_wall_west_of</a>&nbsp;&nbsp;
+      <a href="#M000167">read_world</a>&nbsp;&nbsp;
+      <a href="#M000140">read_world</a>&nbsp;&nbsp;
+      <a href="#M000160">remove_all_beepers</a>&nbsp;&nbsp;
+      <a href="#M000161">remove_beeper</a>&nbsp;&nbsp;
+      <a href="#M000130">remove_beeper</a>&nbsp;&nbsp;
+      <a href="#M000155">remove_wall_east_of</a>&nbsp;&nbsp;
+      <a href="#M000151">remove_wall_north_of</a>&nbsp;&nbsp;
+      <a href="#M000141">save_world</a>&nbsp;&nbsp;
+      <a href="#M000168">save_world</a>&nbsp;&nbsp;
+      <a href="#M000137">set_size</a>&nbsp;&nbsp;
+      <a href="#M000146">set_speed</a>&nbsp;&nbsp;
+      <a href="#M000165">show_world</a>&nbsp;&nbsp;
+      <a href="#M000138">show_world</a>&nbsp;&nbsp;
+      <a href="#M000166">show_world_with_robots</a>&nbsp;&nbsp;
+      <a href="#M000139">show_world_with_robots</a>&nbsp;&nbsp;
+      <a href="#M000147">speed_call_back</a>&nbsp;&nbsp;
+      <a href="#M000144">update</a>&nbsp;&nbsp;
+      <a href="#M000162">visible</a>&nbsp;&nbsp;
+      <a href="#M000159">wall_to_east?</a>&nbsp;&nbsp;
+      <a href="#M000136">wall_to_east?</a>&nbsp;&nbsp;
+      <a href="#M000156">wall_to_north?</a>&nbsp;&nbsp;
+      <a href="#M000133">wall_to_north?</a>&nbsp;&nbsp;
+      <a href="#M000135">wall_to_south?</a>&nbsp;&nbsp;
+      <a href="#M000158">wall_to_south?</a>&nbsp;&nbsp;
+      <a href="#M000157">wall_to_west?</a>&nbsp;&nbsp;
+      <a href="#M000134">wall_to_west?</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000125" class="method-detail">
+        <a name="M000125"></a>
+
+        <div class="method-heading">
+          <a href="RobotWorld.src/M000125.html" target="Code" class="method-signature"
+            onclick="popupCode('RobotWorld.src/M000125.html');return false;">
+          <span class="method-name">instance</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000143" class="method-detail">
+        <a name="M000143"></a>
+
+        <div class="method-heading">
+          <a href="RobotWorld.src/M000143.html" target="Code" class="method-signature"
+            onclick="popupCode('RobotWorld.src/M000143.html');return false;">
+          <span class="method-name">instance</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000142" class="method-detail">
+        <a name="M000142"></a>
+
+        <div class="method-heading">
+          <a href="RobotWorld.src/M000142.html" target="Code" class="method-signature"
+            onclick="popupCode('RobotWorld.src/M000142.html');return false;">
+          <span class="method-name">new</span><span class="method-args">(name)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000146" class="method-detail">
+        <a name="M000146"></a>
+
+        <div class="method-heading">
+          <a href="RobotWorld.src/M000146.html" target="Code" class="method-signature"
+            onclick="popupCode('RobotWorld.src/M000146.html');return false;">
+          <span class="method-name">set_speed</span><span class="method-args">(amount)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000148" class="method-detail">
+        <a name="M000148"></a>
+
+        <div class="method-heading">
+          <a href="RobotWorld.src/M000148.html" target="Code" class="method-signature"
+            onclick="popupCode('RobotWorld.src/M000148.html');return false;">
+          <span class="method-name">beepers_at?</span><span class="method-args">(street, avenue)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000126" class="method-detail">
+        <a name="M000126"></a>
+
+        <div class="method-heading">
+          <a href="RobotWorld.src/M000126.html" target="Code" class="method-signature"
+            onclick="popupCode('RobotWorld.src/M000126.html');return false;">
+          <span class="method-name">clear</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Remove all features (walls, beepers) from the world. Robots are not
+affected
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000164" class="method-detail">
+        <a name="M000164"></a>
+
+        <div class="method-heading">
+          <a href="RobotWorld.src/M000164.html" target="Code" class="method-signature"
+            onclick="popupCode('RobotWorld.src/M000164.html');return false;">
+          <span class="method-name">dump_display</span><span class="method-args">(display, startStreet, startAvenue, streetsTowardNorth, avenuesTowardEast)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Image the display with the first row at the bottom
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000163" class="method-detail">
+        <a name="M000163"></a>
+
+        <div class="method-heading">
+          <a href="RobotWorld.src/M000163.html" target="Code" class="method-signature"
+            onclick="popupCode('RobotWorld.src/M000163.html');return false;">
+          <span class="method-name">get_display</span><span class="method-args">(startStreet, startAvenue, streetsTowardNorth, avenuesTowardEast)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+This two dimensional structure has the following properties. Every other
+row and every other column is initially blank. Each cell is a three char
+string. Odd numbered rows are initially blank, Even numbered columns are
+initially blank. The first row will be imaged at the bottom of the output.
+The first column at the left. The blank rows and columns will eventually
+hold symbols for walls. Only one symbol can appear in a cell. The entries
+for corners &quot;.&quot; are added first with beepers next and finally
+robots. The last symbol added is the one shown when the display is printed.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000127" class="method-detail">
+        <a name="M000127"></a>
+
+        <div class="method-heading">
+          <a href="RobotWorld.src/M000127.html" target="Code" class="method-signature"
+            onclick="popupCode('RobotWorld.src/M000127.html');return false;">
+          <span class="method-name">name</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000145" class="method-detail">
+        <a name="M000145"></a>
+
+        <div class="method-heading">
+          <a href="RobotWorld.src/M000145.html" target="Code" class="method-signature"
+            onclick="popupCode('RobotWorld.src/M000145.html');return false;">
+          <span class="method-name">name</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000128" class="method-detail">
+        <a name="M000128"></a>
+
+        <div class="method-heading">
+          <a href="RobotWorld.src/M000128.html" target="Code" class="method-signature"
+            onclick="popupCode('RobotWorld.src/M000128.html');return false;">
+          <span class="method-name">place_beeper</span><span class="method-args">(street, avenue)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Place a single beeper on a given corner
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000129" class="method-detail">
+        <a name="M000129"></a>
+
+        <div class="method-heading">
+          <a href="RobotWorld.src/M000129.html" target="Code" class="method-signature"
+            onclick="popupCode('RobotWorld.src/M000129.html');return false;">
+          <span class="method-name">place_beepers</span><span class="method-args">(street, avenue, howMany, byRobot = false)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Place a given number of beepers on a given corner
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000149" class="method-detail">
+        <a name="M000149"></a>
+
+        <div class="method-heading">
+          <a href="RobotWorld.src/M000149.html" target="Code" class="method-signature"
+            onclick="popupCode('RobotWorld.src/M000149.html');return false;">
+          <span class="method-name">place_beepers</span><span class="method-args">(street, avenue, howMany=1, byRobot = false)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000132" class="method-detail">
+        <a name="M000132"></a>
+
+        <div class="method-heading">
+          <a href="RobotWorld.src/M000132.html" target="Code" class="method-signature"
+            onclick="popupCode('RobotWorld.src/M000132.html');return false;">
+          <span class="method-name">place_wall_east_of</span><span class="method-args">(street, avenue)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Place a single wall segment east of a given corner, oriented North-South
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000154" class="method-detail">
+        <a name="M000154"></a>
+
+        <div class="method-heading">
+          <a href="RobotWorld.src/M000154.html" target="Code" class="method-signature"
+            onclick="popupCode('RobotWorld.src/M000154.html');return false;">
+          <span class="method-name">place_wall_east_of</span><span class="method-args">(street, avenue)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000131" class="method-detail">
+        <a name="M000131"></a>
+
+        <div class="method-heading">
+          <a href="RobotWorld.src/M000131.html" target="Code" class="method-signature"
+            onclick="popupCode('RobotWorld.src/M000131.html');return false;">
+          <span class="method-name">place_wall_north_of</span><span class="method-args">(street, avenue)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Place a single wall segment North of a given corner, oriented East-West
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000150" class="method-detail">
+        <a name="M000150"></a>
+
+        <div class="method-heading">
+          <a href="RobotWorld.src/M000150.html" target="Code" class="method-signature"
+            onclick="popupCode('RobotWorld.src/M000150.html');return false;">
+          <span class="method-name">place_wall_north_of</span><span class="method-args">(street, avenue)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000153" class="method-detail">
+        <a name="M000153"></a>
+
+        <div class="method-heading">
+          <a href="RobotWorld.src/M000153.html" target="Code" class="method-signature"
+            onclick="popupCode('RobotWorld.src/M000153.html');return false;">
+          <span class="method-name">place_wall_south_of</span><span class="method-args">(street, avenue)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000152" class="method-detail">
+        <a name="M000152"></a>
+
+        <div class="method-heading">
+          <a href="RobotWorld.src/M000152.html" target="Code" class="method-signature"
+            onclick="popupCode('RobotWorld.src/M000152.html');return false;">
+          <span class="method-name">place_wall_west_of</span><span class="method-args">(street, avenue)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000167" class="method-detail">
+        <a name="M000167"></a>
+
+        <div class="method-heading">
+          <a href="RobotWorld.src/M000167.html" target="Code" class="method-signature"
+            onclick="popupCode('RobotWorld.src/M000167.html');return false;">
+          <span class="method-name">read_world</span><span class="method-args">(filename)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Read a world from a text file with the given <a
+href="RobotWorld.html#M000127">name</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000140" class="method-detail">
+        <a name="M000140"></a>
+
+        <div class="method-heading">
+          <a href="RobotWorld.src/M000140.html" target="Code" class="method-signature"
+            onclick="popupCode('RobotWorld.src/M000140.html');return false;">
+          <span class="method-name">read_world</span><span class="method-args">(filename)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Read a world from a text file with the given <a
+href="RobotWorld.html#M000127">name</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000160" class="method-detail">
+        <a name="M000160"></a>
+
+        <div class="method-heading">
+          <a href="RobotWorld.src/M000160.html" target="Code" class="method-signature"
+            onclick="popupCode('RobotWorld.src/M000160.html');return false;">
+          <span class="method-name">remove_all_beepers</span><span class="method-args">(street, avenue)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000161" class="method-detail">
+        <a name="M000161"></a>
+
+        <div class="method-heading">
+          <a href="RobotWorld.src/M000161.html" target="Code" class="method-signature"
+            onclick="popupCode('RobotWorld.src/M000161.html');return false;">
+          <span class="method-name">remove_beeper</span><span class="method-args">(street, avenue)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000130" class="method-detail">
+        <a name="M000130"></a>
+
+        <div class="method-heading">
+          <a href="RobotWorld.src/M000130.html" target="Code" class="method-signature"
+            onclick="popupCode('RobotWorld.src/M000130.html');return false;">
+          <span class="method-name">remove_beeper</span><span class="method-args">(street, avenue)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Remove a single beeper from a given corner (if any are present)
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000155" class="method-detail">
+        <a name="M000155"></a>
+
+        <div class="method-heading">
+          <a href="RobotWorld.src/M000155.html" target="Code" class="method-signature"
+            onclick="popupCode('RobotWorld.src/M000155.html');return false;">
+          <span class="method-name">remove_wall_east_of</span><span class="method-args">(street, avenue)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000151" class="method-detail">
+        <a name="M000151"></a>
+
+        <div class="method-heading">
+          <a href="RobotWorld.src/M000151.html" target="Code" class="method-signature"
+            onclick="popupCode('RobotWorld.src/M000151.html');return false;">
+          <span class="method-name">remove_wall_north_of</span><span class="method-args">(street, avenue)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000141" class="method-detail">
+        <a name="M000141"></a>
+
+        <div class="method-heading">
+          <a href="RobotWorld.src/M000141.html" target="Code" class="method-signature"
+            onclick="popupCode('RobotWorld.src/M000141.html');return false;">
+          <span class="method-name">save_world</span><span class="method-args">(filename)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Save (write) a world in a text file with a given <a
+href="RobotWorld.html#M000127">name</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000168" class="method-detail">
+        <a name="M000168"></a>
+
+        <div class="method-heading">
+          <a href="RobotWorld.src/M000168.html" target="Code" class="method-signature"
+            onclick="popupCode('RobotWorld.src/M000168.html');return false;">
+          <span class="method-name">save_world</span><span class="method-args">(filename)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Save (write) a world in a text file with a given <a
+href="RobotWorld.html#M000127">name</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000137" class="method-detail">
+        <a name="M000137"></a>
+
+        <div class="method-heading">
+          <a href="RobotWorld.src/M000137.html" target="Code" class="method-signature"
+            onclick="popupCode('RobotWorld.src/M000137.html');return false;">
+          <span class="method-name">set_size</span><span class="method-args">(numberOfStreets = 10, numberOfAvenues = 10)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000165" class="method-detail">
+        <a name="M000165"></a>
+
+        <div class="method-heading">
+          <a href="RobotWorld.src/M000165.html" target="Code" class="method-signature"
+            onclick="popupCode('RobotWorld.src/M000165.html');return false;">
+          <span class="method-name">show_world</span><span class="method-args">(startStreet=1, startAvenue=1, streetsTowardNorth=10, avenuesTowardEast=10)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Print a representation of the world (walls, corners, beepers) on std out
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000138" class="method-detail">
+        <a name="M000138"></a>
+
+        <div class="method-heading">
+          <a href="RobotWorld.src/M000138.html" target="Code" class="method-signature"
+            onclick="popupCode('RobotWorld.src/M000138.html');return false;">
+          <span class="method-name">show_world</span><span class="method-args">(startStreet=1, startAvenue=1, streetsTowardNorth=10, avenuesTowardEast=10)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Print a representation of the world (walls, corners, beepers) on std out
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000166" class="method-detail">
+        <a name="M000166"></a>
+
+        <div class="method-heading">
+          <a href="RobotWorld.src/M000166.html" target="Code" class="method-signature"
+            onclick="popupCode('RobotWorld.src/M000166.html');return false;">
+          <span class="method-name">show_world_with_robots</span><span class="method-args">(startStreet=1, startAvenue=1, streetsTowardNorth=10, avenuesTowardEast=10)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <pre>
+ Print a representation of the world including robots to std out. Robots will hide beepers and only
+</pre>
+<p>
+one robot can be shown on a corner.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000139" class="method-detail">
+        <a name="M000139"></a>
+
+        <div class="method-heading">
+          <a href="RobotWorld.src/M000139.html" target="Code" class="method-signature"
+            onclick="popupCode('RobotWorld.src/M000139.html');return false;">
+          <span class="method-name">show_world_with_robots</span><span class="method-args">(startStreet=1, startAvenue=1, streetsTowardNorth=10, avenuesTowardEast=10)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <pre>
+ Print a representation of the world including robots to std out. Robots will hide beepers and only
+</pre>
+<p>
+one robot can be shown on a corner.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000147" class="method-detail">
+        <a name="M000147"></a>
+
+        <div class="method-heading">
+          <a href="RobotWorld.src/M000147.html" target="Code" class="method-signature"
+            onclick="popupCode('RobotWorld.src/M000147.html');return false;">
+          <span class="method-name">speed_call_back</span><span class="method-args">(*args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000144" class="method-detail">
+        <a name="M000144"></a>
+
+        <div class="method-heading">
+          <a href="RobotWorld.src/M000144.html" target="Code" class="method-signature"
+            onclick="popupCode('RobotWorld.src/M000144.html');return false;">
+          <span class="method-name">update</span><span class="method-args">(robot, action, state)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000162" class="method-detail">
+        <a name="M000162"></a>
+
+        <div class="method-heading">
+          <a href="RobotWorld.src/M000162.html" target="Code" class="method-signature"
+            onclick="popupCode('RobotWorld.src/M000162.html');return false;">
+          <span class="method-name">visible</span><span class="method-args">(x, y, xBound, yBound)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return true if (x,y) is in the visible part of the world delimited by
+(xBound, yBound)
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000159" class="method-detail">
+        <a name="M000159"></a>
+
+        <div class="method-heading">
+          <a href="RobotWorld.src/M000159.html" target="Code" class="method-signature"
+            onclick="popupCode('RobotWorld.src/M000159.html');return false;">
+          <span class="method-name">wall_to_east?</span><span class="method-args">(street, avenue)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return true if there is a wall to the East of the given corner
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000136" class="method-detail">
+        <a name="M000136"></a>
+
+        <div class="method-heading">
+          <a href="RobotWorld.src/M000136.html" target="Code" class="method-signature"
+            onclick="popupCode('RobotWorld.src/M000136.html');return false;">
+          <span class="method-name">wall_to_east?</span><span class="method-args">(street, avenue)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return true if there is a wall to the East of the given corner
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000156" class="method-detail">
+        <a name="M000156"></a>
+
+        <div class="method-heading">
+          <a href="RobotWorld.src/M000156.html" target="Code" class="method-signature"
+            onclick="popupCode('RobotWorld.src/M000156.html');return false;">
+          <span class="method-name">wall_to_north?</span><span class="method-args">(street, avenue)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return true if there is a wall to the North of the given corner
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000133" class="method-detail">
+        <a name="M000133"></a>
+
+        <div class="method-heading">
+          <a href="RobotWorld.src/M000133.html" target="Code" class="method-signature"
+            onclick="popupCode('RobotWorld.src/M000133.html');return false;">
+          <span class="method-name">wall_to_north?</span><span class="method-args">(street, avenue)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return true if there is a wall to the North of the given corner
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000135" class="method-detail">
+        <a name="M000135"></a>
+
+        <div class="method-heading">
+          <a href="RobotWorld.src/M000135.html" target="Code" class="method-signature"
+            onclick="popupCode('RobotWorld.src/M000135.html');return false;">
+          <span class="method-name">wall_to_south?</span><span class="method-args">(street, avenue)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return true if there is a wall to the South of the given corner
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000158" class="method-detail">
+        <a name="M000158"></a>
+
+        <div class="method-heading">
+          <a href="RobotWorld.src/M000158.html" target="Code" class="method-signature"
+            onclick="popupCode('RobotWorld.src/M000158.html');return false;">
+          <span class="method-name">wall_to_south?</span><span class="method-args">(street, avenue)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return true if there is a wall to the South of the given corner
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000157" class="method-detail">
+        <a name="M000157"></a>
+
+        <div class="method-heading">
+          <a href="RobotWorld.src/M000157.html" target="Code" class="method-signature"
+            onclick="popupCode('RobotWorld.src/M000157.html');return false;">
+          <span class="method-name">wall_to_west?</span><span class="method-args">(street, avenue)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return true if there is a wall to the West of the given corner
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000134" class="method-detail">
+        <a name="M000134"></a>
+
+        <div class="method-heading">
+          <a href="RobotWorld.src/M000134.html" target="Code" class="method-signature"
+            onclick="popupCode('RobotWorld.src/M000134.html');return false;">
+          <span class="method-name">wall_to_west?</span><span class="method-args">(street, avenue)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return true if there is a wall to the West of the given corner
+</p>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

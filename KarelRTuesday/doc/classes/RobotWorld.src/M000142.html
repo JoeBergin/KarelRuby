@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>new (RobotWorld)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File karel/tk_robot_world.rb, line 24</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span> (<span class="ruby-identifier">name</span>)
+    <span class="ruby-keyword kw">super</span>()
+    <span class="ruby-comment cmt"># puts 'new tk robot world'</span>
+    <span class="ruby-ivar">@name</span> = <span class="ruby-identifier">name</span>
+    <span class="ruby-ivar">@beepers</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">0</span>)
+    <span class="ruby-ivar">@east_west_walls</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">0</span>)
+    <span class="ruby-ivar">@north_south_walls</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">0</span>)
+    <span class="ruby-ivar">@robots</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">nil</span>)
+
+    <span class="ruby-ivar">@beepers</span>.<span class="ruby-identifier">extend</span>(<span class="ruby-constant">MonitorMixin</span>)
+    <span class="ruby-ivar">@@beeper_control</span> = <span class="ruby-ivar">@beepers</span>.<span class="ruby-identifier">new_cond</span>
+   <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

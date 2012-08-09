@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>carry_one (Carrier)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File default/adder.rb, line 44</span>
+   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">carry_one</span>() <span class="ruby-comment cmt"># Facing north on 1st Street. -- Carrier class</span>
+       <span class="ruby-identifier">turn_left</span>()
+       <span class="ruby-identifier">move</span>()           <span class="ruby-comment cmt"># Note:  Error shutoff here if we try to carry</span>
+                        <span class="ruby-comment cmt"># from 1st Street.</span>
+       <span class="ruby-identifier">put_beeper</span>() 
+       <span class="ruby-identifier">turn_around</span>()
+       <span class="ruby-identifier">move</span>()
+       <span class="ruby-identifier">turn_left</span>()
+       <span class="ruby-identifier">clear_all</span>()
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

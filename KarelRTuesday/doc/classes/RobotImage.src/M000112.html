@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>greyOut (RobotImage)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File karel/karel_window.rb, line 74</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">greyOut</span>
+     <span class="ruby-identifier">delete_all</span>
+     <span class="ruby-identifier">color</span> = <span class="ruby-ivar">@color</span>
+     <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@color</span> <span class="ruby-operator">==</span> <span class="ruby-keyword kw">nil</span>
+       <span class="ruby-identifier">color</span> = <span class="ruby-identifier">:white</span>
+     <span class="ruby-keyword kw">end</span>
+     <span class="ruby-ivar">@image</span> = <span class="ruby-constant">TkLabel</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@canvas</span>,<span class="ruby-identifier">:bg</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">color</span>, <span class="ruby-identifier">:image</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">$imageMapOff</span>[<span class="ruby-ivar">@direction</span>], <span class="ruby-identifier">:width</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@@size</span>, <span class="ruby-identifier">:height</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@@size</span>, <span class="ruby-identifier">:borderwidth</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>)
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

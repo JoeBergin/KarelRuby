@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>get_display (RobotWorld)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File karel/tk_robot_world.rb, line 259</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">get_display</span>(<span class="ruby-identifier">startStreet</span>, <span class="ruby-identifier">startAvenue</span>, <span class="ruby-identifier">streetsTowardNorth</span>, <span class="ruby-identifier">avenuesTowardEast</span>) 
+    <span class="ruby-identifier">xBound</span> = <span class="ruby-value">2</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">streetsTowardNorth</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>
+    <span class="ruby-identifier">yBound</span> = <span class="ruby-value">2</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">avenuesTowardEast</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>
+    
+    <span class="ruby-identifier">display</span> = []
+     (<span class="ruby-value">0</span> <span class="ruby-operator">..</span><span class="ruby-identifier">xBound</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">display</span><span class="ruby-operator">&lt;&lt;</span>[] <span class="ruby-comment cmt"># a row</span>
+      <span class="ruby-identifier">display</span><span class="ruby-operator">&lt;&lt;</span>[] <span class="ruby-comment cmt"># a row</span>
+       (<span class="ruby-identifier">avenuesTowardEast</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>).<span class="ruby-identifier">times</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">j</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">display</span>[<span class="ruby-value">2</span><span class="ruby-operator">*</span><span class="ruby-identifier">i</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>]<span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot; . &quot;</span>
+        <span class="ruby-identifier">display</span>[<span class="ruby-value">2</span><span class="ruby-operator">*</span><span class="ruby-identifier">i</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>]<span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;   &quot;</span>
+        <span class="ruby-identifier">display</span>[<span class="ruby-value">2</span><span class="ruby-operator">*</span><span class="ruby-identifier">i</span>]<span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;   &quot;</span>
+        <span class="ruby-identifier">display</span>[<span class="ruby-value">2</span><span class="ruby-operator">*</span><span class="ruby-identifier">i</span>]<span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;   &quot;</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt">#beepers</span>
+    <span class="ruby-ivar">@beepers</span>.<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">key</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">x</span>, <span class="ruby-identifier">y</span> = <span class="ruby-identifier">key</span>[<span class="ruby-value">0</span>], <span class="ruby-identifier">key</span>[<span class="ruby-value">1</span>]
+      <span class="ruby-identifier">howMany</span> = <span class="ruby-ivar">@beepers</span>[<span class="ruby-identifier">key</span>]
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">howMany</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">9</span> 
+        <span class="ruby-identifier">cell</span> = <span class="ruby-value str">&quot; * &quot;</span>
+      <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">howMany</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">0</span> 
+        <span class="ruby-identifier">cell</span> = <span class="ruby-value str">&quot;inf&quot;</span>
+      <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">howMany</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+        <span class="ruby-identifier">cell</span> = <span class="ruby-value str">&quot; &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">howMany</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot; &quot;</span>
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-identifier">cell</span> = <span class="ruby-value str">&quot; . &quot;</span>
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-identifier">x</span> = <span class="ruby-value">2</span> <span class="ruby-operator">*</span> (<span class="ruby-identifier">x</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">startStreet</span>) <span class="ruby-operator">+</span> <span class="ruby-value">1</span>
+      <span class="ruby-identifier">y</span> = <span class="ruby-value">2</span> <span class="ruby-operator">*</span> (<span class="ruby-identifier">y</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">startAvenue</span>)
+      <span class="ruby-identifier">display</span>[<span class="ruby-identifier">x</span>][<span class="ruby-identifier">y</span>] = <span class="ruby-identifier">cell</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">visible</span>(<span class="ruby-identifier">x</span>, <span class="ruby-identifier">y</span>, <span class="ruby-identifier">xBound</span>, <span class="ruby-identifier">yBound</span>)
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt">#boundary walls</span>
+    <span class="ruby-identifier">bottom</span> = <span class="ruby-value">2</span> <span class="ruby-operator">*</span> (<span class="ruby-value">1</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">startStreet</span>)
+    <span class="ruby-identifier">left</span> = <span class="ruby-value">2</span> <span class="ruby-operator">*</span> (<span class="ruby-value">1</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">startAvenue</span>)   
+    <span class="ruby-identifier">yBound</span>.<span class="ruby-identifier">times</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-identifier">display</span>[<span class="ruby-identifier">bottom</span>][<span class="ruby-identifier">i</span>] = <span class="ruby-value str">&quot;___&quot;</span>}  <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">bottom</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">0</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">bottom</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">xBound</span> 
+    (<span class="ruby-identifier">xBound</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>).<span class="ruby-identifier">times</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span>  <span class="ruby-identifier">display</span>[<span class="ruby-identifier">i</span><span class="ruby-operator">+</span><span class="ruby-value">1</span>][<span class="ruby-identifier">left</span><span class="ruby-operator">-</span><span class="ruby-value">1</span>] = <span class="ruby-identifier">display</span> [<span class="ruby-identifier">i</span>][<span class="ruby-identifier">left</span><span class="ruby-operator">-</span><span class="ruby-value">1</span>]= <span class="ruby-value str">&quot;|&quot;</span>} <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">left</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">1</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">left</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">yBound</span> 
+    <span class="ruby-comment cmt">#eastwestwalls</span>
+    <span class="ruby-ivar">@east_west_walls</span>.<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">key</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">x</span>, <span class="ruby-identifier">y</span> = <span class="ruby-identifier">key</span>[<span class="ruby-value">0</span>], <span class="ruby-identifier">key</span>[<span class="ruby-value">1</span>]
+      <span class="ruby-identifier">x</span> = <span class="ruby-value">2</span> <span class="ruby-operator">*</span> (<span class="ruby-identifier">x</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">startStreet</span>) <span class="ruby-operator">+</span> <span class="ruby-value">1</span>
+      <span class="ruby-identifier">y</span> = <span class="ruby-value">2</span> <span class="ruby-operator">*</span> (<span class="ruby-identifier">y</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">startAvenue</span>)
+      <span class="ruby-identifier">display</span>[<span class="ruby-identifier">x</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>][<span class="ruby-identifier">y</span>] = <span class="ruby-value str">&quot;___&quot;</span>  <span class="ruby-keyword kw">if</span>  <span class="ruby-identifier">visible</span>(<span class="ruby-identifier">x</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>, <span class="ruby-identifier">y</span>, <span class="ruby-identifier">xBound</span>, <span class="ruby-identifier">yBound</span>) 
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt">#northsouthwalls</span>
+    <span class="ruby-ivar">@north_south_walls</span>.<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">key</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">x</span>, <span class="ruby-identifier">y</span> = <span class="ruby-identifier">key</span>[<span class="ruby-value">0</span>], <span class="ruby-identifier">key</span>[<span class="ruby-value">1</span>]
+      <span class="ruby-identifier">bottom</span> = <span class="ruby-identifier">x</span>
+      <span class="ruby-identifier">x</span> = <span class="ruby-value">2</span> <span class="ruby-operator">*</span> (<span class="ruby-identifier">x</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">startStreet</span>);
+      <span class="ruby-identifier">y</span> = <span class="ruby-value">2</span> <span class="ruby-operator">*</span> (<span class="ruby-identifier">y</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">startAvenue</span>) <span class="ruby-operator">+</span> <span class="ruby-value">1</span>;
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">visible</span>(<span class="ruby-identifier">x</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>, <span class="ruby-identifier">y</span>, <span class="ruby-identifier">xBound</span>, <span class="ruby-identifier">yBound</span>) 
+        <span class="ruby-identifier">display</span>[<span class="ruby-identifier">x</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span> ][<span class="ruby-identifier">y</span>] = <span class="ruby-identifier">display</span>[<span class="ruby-identifier">x</span>][<span class="ruby-identifier">y</span>] = <span class="ruby-value str">&quot; | &quot;</span>
+        <span class="ruby-identifier">display</span>[<span class="ruby-identifier">x</span>][<span class="ruby-identifier">y</span>] = <span class="ruby-value str">&quot;_|_&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">bottom</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span> 
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">display</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

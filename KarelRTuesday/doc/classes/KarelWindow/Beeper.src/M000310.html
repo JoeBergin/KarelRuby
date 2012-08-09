@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>place (KarelWindow::Beeper)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File karel/karel_window.rb, line 415</span>
+        <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">place</span>()
+            <span class="ruby-identifier">sizeFactor</span> = <span class="ruby-value">0</span><span class="ruby-value">.5</span> <span class="ruby-comment cmt">#Change this to change beeper size. The others scale from it. </span>
+            <span class="ruby-identifier">placeFactor</span> = <span class="ruby-value">0</span><span class="ruby-value">.5</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">sizeFactor</span>
+            <span class="ruby-identifier">val</span> = <span class="ruby-ivar">@number</span>.<span class="ruby-identifier">to_s</span>
+            <span class="ruby-comment cmt"># if @number &lt; 0</span>
+              <span class="ruby-comment cmt"># val = 'N'</span>
+            <span class="ruby-comment cmt"># end</span>
+            <span class="ruby-identifier">val</span> = <span class="ruby-value str">'N'</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@number</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">0</span>
+            <span class="ruby-identifier">x</span>,<span class="ruby-identifier">y</span> = <span class="ruby-identifier">scaler</span>(<span class="ruby-ivar">@street</span><span class="ruby-operator">+</span><span class="ruby-identifier">placeFactor</span>, <span class="ruby-ivar">@avenue</span><span class="ruby-operator">-</span><span class="ruby-identifier">placeFactor</span>)
+??
+            <span class="ruby-identifier">oval</span> = <span class="ruby-constant">TkcOval</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@canvas</span>, <span class="ruby-identifier">x</span>, <span class="ruby-identifier">y</span>, <span class="ruby-identifier">x</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">scale_factor</span><span class="ruby-operator">*</span><span class="ruby-identifier">sizeFactor</span>, <span class="ruby-identifier">y</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">scale_factor</span><span class="ruby-operator">*</span><span class="ruby-identifier">sizeFactor</span>, <span class="ruby-identifier">:fill=</span><span class="ruby-operator">&gt;</span> <span class="ruby-value str">'black'</span>, <span class="ruby-identifier">:tags</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@tag</span>)
+            <span class="ruby-constant">TkcText</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">oval</span>, <span class="ruby-identifier">x</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">scale_factor</span><span class="ruby-operator">*</span><span class="ruby-identifier">placeFactor</span>,  <span class="ruby-identifier">y</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">scale_factor</span><span class="ruby-operator">*</span><span class="ruby-identifier">placeFactor</span>,
+                   <span class="ruby-identifier">:tags</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@tag</span>, <span class="ruby-identifier">:width</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>, <span class="ruby-identifier">:text</span> =<span class="ruby-operator">&gt;</span><span class="ruby-identifier">val</span>, <span class="ruby-identifier">:fill</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'white'</span>)
+        <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

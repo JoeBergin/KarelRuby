@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>place_beepers (RobotWorld)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File karel/tk_robot_world.rb, line 108</span>
+ <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">place_beepers</span>(<span class="ruby-identifier">street</span>, <span class="ruby-identifier">avenue</span>, <span class="ruby-identifier">howMany</span>=<span class="ruby-value">1</span>, <span class="ruby-identifier">byRobot</span> = <span class="ruby-keyword kw">false</span>)
+    <span class="ruby-ivar">@beepers</span>.<span class="ruby-identifier">synchronize</span> <span class="ruby-keyword kw">do</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">howMany</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+        <span class="ruby-ivar">@@beeper_control</span>.<span class="ruby-identifier">signal</span>
+        <span class="ruby-keyword kw">return</span>
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-identifier">legal_corner</span>(<span class="ruby-identifier">street</span>, <span class="ruby-identifier">avenue</span>)
+      <span class="ruby-identifier">place</span> = [<span class="ruby-identifier">street</span>, <span class="ruby-identifier">avenue</span>]
+      <span class="ruby-identifier">sleep</span>(<span class="ruby-ivar">@@delay</span> <span class="ruby-operator">/</span> <span class="ruby-value">400.0</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">byRobot</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">howMany</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">0</span>
+        <span class="ruby-ivar">@beepers</span>[<span class="ruby-identifier">place</span>] = <span class="ruby-constant">INFINITY</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">window</span>()
+          <span class="ruby-identifier">$window</span>.<span class="ruby-identifier">delete_beeper</span>(<span class="ruby-identifier">place</span>)
+          <span class="ruby-identifier">$window</span>.<span class="ruby-identifier">place_beeper</span>(<span class="ruby-identifier">street</span>, <span class="ruby-identifier">avenue</span>, <span class="ruby-constant">INFINITY</span>)
+        
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-ivar">@@beeper_control</span>.<span class="ruby-identifier">signal</span>
+      <span class="ruby-keyword kw">return</span>
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-identifier">inWorld</span> = <span class="ruby-ivar">@beepers</span>[<span class="ruby-identifier">place</span>]
+      <span class="ruby-identifier">toPlace</span> = <span class="ruby-identifier">howMany</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">inWorld</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">window</span>() <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">inWorld</span> <span class="ruby-operator">!=</span> <span class="ruby-constant">INFINITY</span>
+        <span class="ruby-ivar">@beepers</span>[<span class="ruby-identifier">place</span>] = <span class="ruby-identifier">toPlace</span>
+        <span class="ruby-identifier">$window</span>.<span class="ruby-identifier">delete_beeper</span>(<span class="ruby-identifier">place</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">inWorld</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+        <span class="ruby-identifier">$window</span>.<span class="ruby-identifier">place_beeper</span>(<span class="ruby-identifier">street</span>, <span class="ruby-identifier">avenue</span>, <span class="ruby-identifier">toPlace</span>)
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-ivar">@@beeper_control</span>.<span class="ruby-identifier">signal</span>
+    <span class="ruby-keyword kw">end</span>
+  
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

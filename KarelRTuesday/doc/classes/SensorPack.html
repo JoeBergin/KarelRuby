@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: SensorPack</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">SensorPack</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../files/karel/sensor_pack_rb.html">
+                karel/sensor_pack.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+A mixin to add sensing capabilities to robots such as <a
+href="UrRobot.html">UrRobot</a>. Including this in a class will enable the
+robots to sense walls and beepers, as well as other robots. A robot with
+these capabilities will be able to test the direction it is facing. All of
+these methods return true or false.
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000345">any_beepers_in_beeper_bag?</a>&nbsp;&nbsp;
+      <a href="#M000350">facing_east?</a>&nbsp;&nbsp;
+      <a href="#M000347">facing_north?</a>&nbsp;&nbsp;
+      <a href="#M000349">facing_south?</a>&nbsp;&nbsp;
+      <a href="#M000348">facing_west?</a>&nbsp;&nbsp;
+      <a href="#M000351">front_is_clear?</a>&nbsp;&nbsp;
+      <a href="#M000346">next_to_a_beeper?</a>&nbsp;&nbsp;
+      <a href="#M000352">next_to_a_robot?</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000345" class="method-detail">
+        <a name="M000345"></a>
+
+        <div class="method-heading">
+          <a href="SensorPack.src/M000345.html" target="Code" class="method-signature"
+            onclick="popupCode('SensorPack.src/M000345.html');return false;">
+          <span class="method-name">any_beepers_in_beeper_bag?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return true if the robot has any beepers in its beeper bag
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000350" class="method-detail">
+        <a name="M000350"></a>
+
+        <div class="method-heading">
+          <a href="SensorPack.src/M000350.html" target="Code" class="method-signature"
+            onclick="popupCode('SensorPack.src/M000350.html');return false;">
+          <span class="method-name">facing_east?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return true if the robot is facing East
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000347" class="method-detail">
+        <a name="M000347"></a>
+
+        <div class="method-heading">
+          <a href="SensorPack.src/M000347.html" target="Code" class="method-signature"
+            onclick="popupCode('SensorPack.src/M000347.html');return false;">
+          <span class="method-name">facing_north?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return true if the robot is facing North
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000349" class="method-detail">
+        <a name="M000349"></a>
+
+        <div class="method-heading">
+          <a href="SensorPack.src/M000349.html" target="Code" class="method-signature"
+            onclick="popupCode('SensorPack.src/M000349.html');return false;">
+          <span class="method-name">facing_south?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return true if the robot is facing South
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000348" class="method-detail">
+        <a name="M000348"></a>
+
+        <div class="method-heading">
+          <a href="SensorPack.src/M000348.html" target="Code" class="method-signature"
+            onclick="popupCode('SensorPack.src/M000348.html');return false;">
+          <span class="method-name">facing_west?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return true if the robot is facing West
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000351" class="method-detail">
+        <a name="M000351"></a>
+
+        <div class="method-heading">
+          <a href="SensorPack.src/M000351.html" target="Code" class="method-signature"
+            onclick="popupCode('SensorPack.src/M000351.html');return false;">
+          <span class="method-name">front_is_clear?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return true if the robot is not facing a wall one half block away
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000346" class="method-detail">
+        <a name="M000346"></a>
+
+        <div class="method-heading">
+          <a href="SensorPack.src/M000346.html" target="Code" class="method-signature"
+            onclick="popupCode('SensorPack.src/M000346.html');return false;">
+          <span class="method-name">next_to_a_beeper?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return true if the robot is on a corner with at least one beeper
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000352" class="method-detail">
+        <a name="M000352"></a>
+
+        <div class="method-heading">
+          <a href="SensorPack.src/M000352.html" target="Code" class="method-signature"
+            onclick="popupCode('SensorPack.src/M000352.html');return false;">
+          <span class="method-name">next_to_a_robot?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return true if the robot on a corner with at least one other robot
+</p>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>
