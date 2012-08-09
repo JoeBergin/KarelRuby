@@ -1,0 +1,49 @@
+Simulator Documentation. 
+
+The simulator includes a few things not described in the book. 
+
+UrRobot API
+
+move()
+turn_left()
+pick_beeper()
+put_beeper()
+turn_off()
+display()  # Prints a description of state to std out.
+run_task() # The task for a robot in its own thread
+running?() # Is the robot running (vs. shutoff)
+clone() # faithful copy
+neighbors() # other robots on same corner - an Array
+pause() # Pauses a robot after an action waiting for a "return key"
+set_pausing(t/f) # Enables pause to work or not
+
+The constructor (initialize) has an additional parameter. You can give
+a color (:red, :blue, ...) as the last argument and the robot will sit
+on a shield of that color. The default is nil and this implies a 
+transparent robot shield.
+
+The assertions are detailed in the book (appendix)
+
+The world api is detailed in the book (appendix)
+
+The world files are identical to those of Karel J Robot and Monty Karel
+so any you build in any of these work in the others. The WorldMaker will 
+create and edit these. The world maker has no warning if you close before
+saving. 
+
+The RemoteControl can have a color like any robot. Its controller
+dialog will have the same color background. 
+
+There is no way to pause a running simulation. Ruby doesn't seem to 
+have a reasonable way to pause threads. 
+
+Most of the sample code in the book is included in the "default"
+folder. The simulator itself is in "karel" 
+
+The ruby docs should be up-to-date for the code. Most everything is
+documented. 
+
+Ruby needs a command line flag to be able to find the code. If you
+run from a sibling folder to "karel" use (mac/unix separators)
+-I ".:../karel"
+
