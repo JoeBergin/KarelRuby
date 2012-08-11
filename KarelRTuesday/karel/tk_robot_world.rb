@@ -9,7 +9,7 @@ require 'monitor'
 
 # $isVisible = false
 $window = nil
-$window_size = $windowBottom 
+$window_size = $window_bottom 
 INFINITY = $INFINITY
 
 
@@ -82,6 +82,7 @@ class RobotWorld < RobotWorldBase
       #nothing
     end
     @robots[robot] = state
+    robot.display() if $tracing
   end
   
   def name
@@ -95,11 +96,11 @@ class RobotWorld < RobotWorldBase
     $window.set_speed(amount)
   end
   
-  def speed_call_back(*args)
-    # if $window
-      # setDelay(100 - $window.iv.get())
-    # end
-  end
+  # def speed_call_back(*args)
+    # # if $window
+      # # setDelay(100 - $window.iv.get())
+    # # end
+  # end
   
   def beepers_at?(street, avenue)
      (@beepers[[street, avenue]] != nil) and (@beepers[[street, avenue]] != 0)
@@ -424,7 +425,7 @@ end
 def window (size = 12, speed = 100)
   if ! $window
     size = 10 if size <= 0
-    $window = KarelWindow.new(size, size, $window_size, lambda{|x| speed_call_back(x)})
+    $window = KarelWindow.new(size, size, $window_size)
     RobotWorld.set_speed(speed)
   end
   $window

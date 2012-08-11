@@ -5,14 +5,16 @@
 
 <html>
 <head>
-  <title>advert (default/rent_a_jobber.rb)</title>
+  <title>do_all (default/rent_a_jobber.rb)</title>
   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
   <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
 </head>
 <body class="standalone-code">
-  <pre><span class="ruby-comment cmt"># File default/rent_a_jobber.rb, line 39</span>
-<span class="ruby-keyword kw">def</span> <span class="ruby-identifier">advert</span>()
-  <span class="ruby-identifier">print</span>(<span class="ruby-value str">&quot;Rich's Rent A Job&quot;</span>)
+  <pre><span class="ruby-comment cmt"># File default/rent_a_jobber.rb, line 33</span>
+<span class="ruby-keyword kw">def</span> <span class="ruby-identifier">do_all</span>(<span class="ruby-identifier">list</span>)
+  <span class="ruby-identifier">list</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">what</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">what</span>.<span class="ruby-identifier">call</span>()
+  <span class="ruby-keyword kw">end</span>
 <span class="ruby-keyword kw">end</span></pre>
 </body>
 </html>

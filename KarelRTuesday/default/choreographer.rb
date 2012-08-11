@@ -3,7 +3,7 @@ require "harvester"
 
 class Choreographer < Harvester
 
-    def initialize(street, avenue, direction, beepers)  
+    def initialize(street, avenue, direction, beepers, color = nil)  
         super    
         @dancers = []
     end

@@ -1,6 +1,7 @@
 #Copyright 2012 Joseph Bergin
 #License: Creative Commons Attribution-Noncommercial-Share Alike 3.0 United States License
 
+# $triangle_beepers = true
 require 'robot'
 require 'turner'
 require 'die'
@@ -110,7 +111,8 @@ def task
 end
 
 if __FILE__ == $0
-  # window(12, 20).run(lambda{task})
-  # or 
-  window(7, 0).run{task}
+  window(7, 9).run do
+      task
+  end
+  
 end

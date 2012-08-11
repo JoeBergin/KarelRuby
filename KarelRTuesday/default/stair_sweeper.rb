@@ -1,10 +1,8 @@
 
-$graphical = false
+# $graphical = false
 require "ur_robot"
-require "object_namer"
 
 class StairSweeper < UrRobot    
-    include Namer
     #Robot turns right by executing three turn_left instructions
     def turn_right()
         self.turn_left()
@@ -23,7 +21,6 @@ end
         
 def task()
     alex = StairSweeper.new(1, 1, EAST, 0)
-    alex.set_name("Alex")
     alex.climb_stair()
     alex.pick_beeper()
     alex.climb_stair()
@@ -34,9 +31,9 @@ def task()
     alex.display()
 end
 
-    $world = RobotWorld.instance
-    $world.read_world("../worlds/stair_world.txt")
+    # $world = RobotWorld.instance
+    # $world.read_world("../worlds/stair_world.txt")
 
-task()
-
-    $world.show_world_with_robots
+# task()
+# 
+    # $world.show_world_with_robots

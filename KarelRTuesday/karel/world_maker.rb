@@ -126,7 +126,7 @@ class WorldMaker < TkFrame
     def scale(x, y)
       factor = $window.scale_factor
       factor = 1 if factor == 0
-      return ((x - $inset + factor/2)/factor ).to_i, (($windowBottom - $inset - y + factor/2)/factor).to_i
+      return ((x - $inset + factor/2)/factor ).to_i, (($window_bottom - $inset - y + factor/2)/factor).to_i
     end
     
     def drop_item(x, y)
@@ -173,7 +173,7 @@ class WorldMaker < TkFrame
     def scale(x, y)
       factor = $window.scale_factor
       factor = 1 if factor == 0
-      return ((x - $inset + factor/2)/factor).to_i, (($windowBottom - $inset - y ) / factor).to_i
+      return ((x - $inset + factor/2)/factor).to_i, (($window_bottom - $inset - y ) / factor).to_i
     end
     
     def drop_item(x, y)
@@ -206,7 +206,7 @@ class WorldMaker < TkFrame
     def scale(x, y)
       factor = $window.scale_factor
       factor = 1 if factor == 0
-      return   ((x - $inset)/factor).to_i, (($windowBottom - $inset - y + factor/2) / factor).to_i
+      return   ((x - $inset)/factor).to_i, (($window_bottom - $inset - y + factor/2) / factor).to_i
     end
     
     def drop_item(x, y)

@@ -75,8 +75,8 @@ end
 
 
 class Adder < Finder
-    def initialize(avenue)
-        super(1, avenue, NORTH, 0)
+    def initialize(avenue, color = nil)
+        super(1, avenue, NORTH, 0, color)
     end
     
     def slide_left() # in Adder

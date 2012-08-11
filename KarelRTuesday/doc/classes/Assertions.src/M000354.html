@@ -5,14 +5,14 @@
 
 <html>
 <head>
-  <title>assert_not_street (Assertions)</title>
+  <title>assert_beepers (Assertions)</title>
   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
   <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
 </head>
 <body class="standalone-code">
-  <pre><span class="ruby-comment cmt"># File karel/assertions.rb, line 10</span>
-  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">assert_not_street</span>(<span class="ruby-identifier">street</span>)
-    <span class="ruby-identifier">raise</span> <span class="ruby-value str">&quot;Robot is on street: &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">street</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@street</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">street</span>
+  <pre><span class="ruby-comment cmt"># File karel/assertions.rb, line 46</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">assert_beepers</span>(<span class="ruby-identifier">howMany</span>)
+    <span class="ruby-identifier">raise</span> <span class="ruby-value str">&quot;Robot does not have exactly &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">howMany</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot; beepers.&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@beepers</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">howMany</span>    
   <span class="ruby-keyword kw">end</span></pre>
 </body>
 </html>

@@ -1,6 +1,6 @@
-Simulator Documentation. 
+Simulator Documentation.
 
-The simulator includes a few things not described in the book. 
+The simulator includes a few things not described in the book.
 
 UrRobot API
 
@@ -9,7 +9,7 @@ turn_left()
 pick_beeper()
 put_beeper()
 turn_off()
-display()  # Prints a description of state to std out.
+display() # Prints a description of state to std out.
 run_task() # The task for a robot in its own thread
 running?() # Is the robot running (vs. shutoff)
 clone() # faithful copy
@@ -24,26 +24,59 @@ transparent robot shield.
 
 The assertions are detailed in the book (appendix)
 
+---
+
+Notes
+
 The world api is detailed in the book (appendix)
 
 The world files are identical to those of Karel J Robot and Monty Karel
 so any you build in any of these work in the others. The WorldMaker will 
-create and edit these. The world maker has no warning if you close before
-saving. 
+create and edit these files. The world maker issues no warning if you close before
+saving and your edits will be lost.
 
 The RemoteControl can have a color like any robot. Its controller
-dialog will have the same color background. 
-
-There is no way to pause a running simulation. Ruby doesn't seem to 
-have a reasonable way to pause threads. 
+dialog will have the same color background.
 
 Most of the sample code in the book is included in the "default"
-folder. The simulator itself is in "karel" 
+folder. The simulator itself is in "karel"
 
 The ruby docs should be up-to-date for the code. Most everything is
-documented. 
+documented.
 
 Ruby needs a command line flag to be able to find the code. If you
 run from a sibling folder to "karel" use (mac/unix separators)
 -I ".:../karel"
 
+---
+
+Simulator Options
+
+The graphical simulator has a few options. They are available from the Karel menu or via key presses.
+
+Command or Control Q will quit the simulation.
+
+Command or Control T will toggle tracing. When tracing is on, each robot prints its state on each action.
+
+Command or Control P will cause all robots to pause before they begin their next action. Pausing can only be restarted by typing a return/enter into the console window, once for each robot.
+
+Command or Control S will bring up the save dialog to save the current world. If the simulaton is running it will continue to run.
+
+The Faster and Slower buttons increase or decrease the speed of the simulation. The increase/decrease is not linear, however, making it easier to go slow than very fast. If a multi-threaded simulation runs at full speed (100) the robots actually move faster than the screen can properly be drawn. The effect will vary from system to system, but on mine, a speed above approximately 95 is too fast. The actual change for a click is approximately 10% of the difference between 100 and the current speed. A speed of 0 delays each primitive action by one second. A speed of 100 doesn't delay it at all. In a multi-threaded situation, slow speeds mean that the thread interleaving is near perfect. At high speed a thread can do a lot of work when it gets to execute, so the other threads will seem to stall. Explore this, as it can be fun.
+
+In your robot code files you can set a few options prior to a run. These must appear at the top of your file or defaults will already be set. Prior to requiring any of the simulator files (ur_robot, etc) you can set the following options:
+
+$graphical = false will force the text world to be used. The default is the graphical world
+
+$small_window = true will force a window about 600 pixels high. This is useful for small screens. The default is 800. (There is some additional padding in the window sizes.)
+
+$window_bottom = nnnn will set the window size to about nnnn (e.g. 1100). This is useful for monitors of odd sizes.
+
+$triangle_beepers = true will use triangular shaped beepers. The default is circular.
+
+$tracing = true will cause each robot to print its state after performing any basic action. This works in both the graphical and text based worlds.
+
+If you want to use different images for the robots, change the path $images_base. The default is
+$images_base = "../karel/images/". Sixteen images are expected, eight small ones (25 pixels square) and 8 large ones (37 pixels square). In each set of eight four are for the robots when running and four for when they are stopped, one for each direction. Use the same names as the default images. The larger images are used when the number of streets is less than 10
+
+ 

@@ -8,9 +8,7 @@ require "monitor"
 # The simplest kind of instantiable robot. Has all of the capabilities defined in Robota
 class UrRobot < Robota
   include Observable
-  
-  # attr_reader :direction
-  
+    
   # Place a robot at a given corner (street, avenue) facing a given direction, with an initial
   # number of beepers in its beeper bag
   # If color is nil its background will appear transparent, otherwise a robot will appear to carry a shield
@@ -36,8 +34,7 @@ class UrRobot < Robota
   
   # def color
     # return @color
-  # end
-#   
+  # end 
   
   def state
     return [@street, @avenue, @direction, @beepers, @runstate, @color]
@@ -68,7 +65,6 @@ class UrRobot < Robota
       self.turn_off
       raise
     end
-    #    Robota::World.register_robot(self, [@street, @avenue, @direction])
     changed
     notify_observers(self, MOVE_ACTION, state)
     self
@@ -79,7 +75,6 @@ class UrRobot < Robota
     pause("turn_left")
     raise RobotNotRunning, " while turning left" if ! @runstate
     @direction = @direction.next
-    #    Robota::World.register_robot(self, [@street, @avenue, @direction])
     changed
     notify_observers(self, TURN_LEFT_ACTION, state)
     self
@@ -151,6 +146,17 @@ class UrRobot < Robota
     return if ! @pausing
     puts "Robot with ID: #@ID is about to #{action}."
     STDIN.gets  
+    if @quick_pause
+      @quick_pause = false
+      @pausing = false
+    end
+  end
+  
+  @quick_pause = false
+  
+  def one_pause()
+    @quick_pause = true
+    @pausing = true
   end
   
   def set_pausing(pause = true)

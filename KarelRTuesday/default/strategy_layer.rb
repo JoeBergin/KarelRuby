@@ -20,8 +20,8 @@ end
 class StrategyLayer < BeeperLayer
 
     # Initially does nothing when asked to put_beepers
-    def initialize(street, avenue, direction, beepers)
-        super(street, avenue, direction, beepers)
+    def initialize(street, avenue, direction, beepers, color = nil)
+        super(street, avenue, direction, beepers, color)
         @strategy = NullStrategy.new()
     end
         

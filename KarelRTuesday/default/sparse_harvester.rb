@@ -18,6 +18,7 @@ def task()
   jones = SparseHarvester.new(2, 2, EAST, 0)
   jones.move()
   jones.harvest_two_rows
+  #incomplete
 end
 
 

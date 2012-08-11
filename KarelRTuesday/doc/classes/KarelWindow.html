@@ -92,31 +92,34 @@ Graphical representation of the robot world
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
-      <a href="#M000295">add_robot</a>&nbsp;&nbsp;
-      <a href="#M000280">canvas</a>&nbsp;&nbsp;
-      <a href="#M000285">clear</a>&nbsp;&nbsp;
-      <a href="#M000276">cursor</a>&nbsp;&nbsp;
-      <a href="#M000290">delete_beeper</a>&nbsp;&nbsp;
-      <a href="#M000279">end_program</a>&nbsp;&nbsp;
-      <a href="#M000286">geometry</a>&nbsp;&nbsp;
-      <a href="#M000284">label_streets_avenues</a>&nbsp;&nbsp;
-      <a href="#M000283">make_boundary_walls</a>&nbsp;&nbsp;
-      <a href="#M000282">make_streets_and_avenues</a>&nbsp;&nbsp;
-      <a href="#M000297">move_robot</a>&nbsp;&nbsp;
-      <a href="#M000278">new</a>&nbsp;&nbsp;
-      <a href="#M000277">number_of_streets</a>&nbsp;&nbsp;
-      <a href="#M000289">place_beeper</a>&nbsp;&nbsp;
-      <a href="#M000292">place_wall_east_of</a>&nbsp;&nbsp;
-      <a href="#M000291">place_wall_north_of</a>&nbsp;&nbsp;
-      <a href="#M000294">remove_wall_east_of</a>&nbsp;&nbsp;
-      <a href="#M000293">remove_wall_north_of</a>&nbsp;&nbsp;
-      <a href="#M000300">run</a>&nbsp;&nbsp;
-      <a href="#M000287">scale_factor</a>&nbsp;&nbsp;
-      <a href="#M000288">scale_to_pixels</a>&nbsp;&nbsp;
-      <a href="#M000281">set_size</a>&nbsp;&nbsp;
-      <a href="#M000299">set_speed</a>&nbsp;&nbsp;
-      <a href="#M000298">turn_left_robot</a>&nbsp;&nbsp;
-      <a href="#M000296">turn_off_robot</a>&nbsp;&nbsp;
+      <a href="#M000325">add_robot</a>&nbsp;&nbsp;
+      <a href="#M000310">canvas</a>&nbsp;&nbsp;
+      <a href="#M000315">clear</a>&nbsp;&nbsp;
+      <a href="#M000303">cursor</a>&nbsp;&nbsp;
+      <a href="#M000320">delete_beeper</a>&nbsp;&nbsp;
+      <a href="#M000306">end_program</a>&nbsp;&nbsp;
+      <a href="#M000316">geometry</a>&nbsp;&nbsp;
+      <a href="#M000314">label_streets_avenues</a>&nbsp;&nbsp;
+      <a href="#M000313">make_boundary_walls</a>&nbsp;&nbsp;
+      <a href="#M000312">make_streets_and_avenues</a>&nbsp;&nbsp;
+      <a href="#M000327">move_robot</a>&nbsp;&nbsp;
+      <a href="#M000305">new</a>&nbsp;&nbsp;
+      <a href="#M000304">number_of_streets</a>&nbsp;&nbsp;
+      <a href="#M000308">pause</a>&nbsp;&nbsp;
+      <a href="#M000319">place_beeper</a>&nbsp;&nbsp;
+      <a href="#M000322">place_wall_east_of</a>&nbsp;&nbsp;
+      <a href="#M000321">place_wall_north_of</a>&nbsp;&nbsp;
+      <a href="#M000324">remove_wall_east_of</a>&nbsp;&nbsp;
+      <a href="#M000323">remove_wall_north_of</a>&nbsp;&nbsp;
+      <a href="#M000330">run</a>&nbsp;&nbsp;
+      <a href="#M000307">save</a>&nbsp;&nbsp;
+      <a href="#M000317">scale_factor</a>&nbsp;&nbsp;
+      <a href="#M000318">scale_to_pixels</a>&nbsp;&nbsp;
+      <a href="#M000311">set_size</a>&nbsp;&nbsp;
+      <a href="#M000329">set_speed</a>&nbsp;&nbsp;
+      <a href="#M000309">toggle_trace</a>&nbsp;&nbsp;
+      <a href="#M000328">turn_left_robot</a>&nbsp;&nbsp;
+      <a href="#M000326">turn_off_robot</a>&nbsp;&nbsp;
       </div>
     </div>
 
@@ -145,13 +148,13 @@ Class <a href="KarelWindow/Wall.html" class="link">KarelWindow::Wall</a><br />
     <div id="methods">
       <h3 class="section-bar">Public Class methods</h3>
 
-      <div id="method-M000278" class="method-detail">
-        <a name="M000278"></a>
+      <div id="method-M000305" class="method-detail">
+        <a name="M000305"></a>
 
         <div class="method-heading">
-          <a href="KarelWindow.src/M000278.html" target="Code" class="method-signature"
-            onclick="popupCode('KarelWindow.src/M000278.html');return false;">
-          <span class="method-name">new</span><span class="method-args">(streets, avenues, size = $windowBottom, callback = nil)</span>
+          <a href="KarelWindow.src/M000305.html" target="Code" class="method-signature"
+            onclick="popupCode('KarelWindow.src/M000305.html');return false;">
+          <span class="method-name">new</span><span class="method-args">(streets, avenues, size = $window_bottom)</span>
           </a>
         </div>
       
@@ -161,12 +164,12 @@ Class <a href="KarelWindow/Wall.html" class="link">KarelWindow::Wall</a><br />
 
       <h3 class="section-bar">Public Instance methods</h3>
 
-      <div id="method-M000295" class="method-detail">
-        <a name="M000295"></a>
+      <div id="method-M000325" class="method-detail">
+        <a name="M000325"></a>
 
         <div class="method-heading">
-          <a href="KarelWindow.src/M000295.html" target="Code" class="method-signature"
-            onclick="popupCode('KarelWindow.src/M000295.html');return false;">
+          <a href="KarelWindow.src/M000325.html" target="Code" class="method-signature"
+            onclick="popupCode('KarelWindow.src/M000325.html');return false;">
           <span class="method-name">add_robot</span><span class="method-args">(street, avenue, direction, color)</span>
           </a>
         </div>
@@ -175,12 +178,12 @@ Class <a href="KarelWindow/Wall.html" class="link">KarelWindow::Wall</a><br />
         </div>
       </div>
 
-      <div id="method-M000280" class="method-detail">
-        <a name="M000280"></a>
+      <div id="method-M000310" class="method-detail">
+        <a name="M000310"></a>
 
         <div class="method-heading">
-          <a href="KarelWindow.src/M000280.html" target="Code" class="method-signature"
-            onclick="popupCode('KarelWindow.src/M000280.html');return false;">
+          <a href="KarelWindow.src/M000310.html" target="Code" class="method-signature"
+            onclick="popupCode('KarelWindow.src/M000310.html');return false;">
           <span class="method-name">canvas</span><span class="method-args">()</span>
           </a>
         </div>
@@ -189,12 +192,12 @@ Class <a href="KarelWindow/Wall.html" class="link">KarelWindow::Wall</a><br />
         </div>
       </div>
 
-      <div id="method-M000285" class="method-detail">
-        <a name="M000285"></a>
+      <div id="method-M000315" class="method-detail">
+        <a name="M000315"></a>
 
         <div class="method-heading">
-          <a href="KarelWindow.src/M000285.html" target="Code" class="method-signature"
-            onclick="popupCode('KarelWindow.src/M000285.html');return false;">
+          <a href="KarelWindow.src/M000315.html" target="Code" class="method-signature"
+            onclick="popupCode('KarelWindow.src/M000315.html');return false;">
           <span class="method-name">clear</span><span class="method-args">()</span>
           </a>
         </div>
@@ -203,26 +206,29 @@ Class <a href="KarelWindow/Wall.html" class="link">KarelWindow::Wall</a><br />
         </div>
       </div>
 
-      <div id="method-M000276" class="method-detail">
-        <a name="M000276"></a>
+      <div id="method-M000303" class="method-detail">
+        <a name="M000303"></a>
 
         <div class="method-heading">
-          <a href="KarelWindow.src/M000276.html" target="Code" class="method-signature"
-            onclick="popupCode('KarelWindow.src/M000276.html');return false;">
+          <a href="KarelWindow.src/M000303.html" target="Code" class="method-signature"
+            onclick="popupCode('KarelWindow.src/M000303.html');return false;">
           <span class="method-name">cursor</span><span class="method-args">(which)</span>
           </a>
         </div>
       
         <div class="method-description">
+          <p>
+@@showing_pause = false @@threads_paused = true
+</p>
         </div>
       </div>
 
-      <div id="method-M000290" class="method-detail">
-        <a name="M000290"></a>
+      <div id="method-M000320" class="method-detail">
+        <a name="M000320"></a>
 
         <div class="method-heading">
-          <a href="KarelWindow.src/M000290.html" target="Code" class="method-signature"
-            onclick="popupCode('KarelWindow.src/M000290.html');return false;">
+          <a href="KarelWindow.src/M000320.html" target="Code" class="method-signature"
+            onclick="popupCode('KarelWindow.src/M000320.html');return false;">
           <span class="method-name">delete_beeper</span><span class="method-args">(beeperLocation)</span>
           </a>
         </div>
@@ -231,12 +237,12 @@ Class <a href="KarelWindow/Wall.html" class="link">KarelWindow::Wall</a><br />
         </div>
       </div>
 
-      <div id="method-M000279" class="method-detail">
-        <a name="M000279"></a>
+      <div id="method-M000306" class="method-detail">
+        <a name="M000306"></a>
 
         <div class="method-heading">
-          <a href="KarelWindow.src/M000279.html" target="Code" class="method-signature"
-            onclick="popupCode('KarelWindow.src/M000279.html');return false;">
+          <a href="KarelWindow.src/M000306.html" target="Code" class="method-signature"
+            onclick="popupCode('KarelWindow.src/M000306.html');return false;">
           <span class="method-name">end_program</span><span class="method-args">(menu)</span>
           </a>
         </div>
@@ -245,12 +251,12 @@ Class <a href="KarelWindow/Wall.html" class="link">KarelWindow::Wall</a><br />
         </div>
       </div>
 
-      <div id="method-M000286" class="method-detail">
-        <a name="M000286"></a>
+      <div id="method-M000316" class="method-detail">
+        <a name="M000316"></a>
 
         <div class="method-heading">
-          <a href="KarelWindow.src/M000286.html" target="Code" class="method-signature"
-            onclick="popupCode('KarelWindow.src/M000286.html');return false;">
+          <a href="KarelWindow.src/M000316.html" target="Code" class="method-signature"
+            onclick="popupCode('KarelWindow.src/M000316.html');return false;">
           <span class="method-name">geometry</span><span class="method-args">(height)</span>
           </a>
         </div>
@@ -259,12 +265,12 @@ Class <a href="KarelWindow/Wall.html" class="link">KarelWindow::Wall</a><br />
         </div>
       </div>
 
-      <div id="method-M000284" class="method-detail">
-        <a name="M000284"></a>
+      <div id="method-M000314" class="method-detail">
+        <a name="M000314"></a>
 
         <div class="method-heading">
-          <a href="KarelWindow.src/M000284.html" target="Code" class="method-signature"
-            onclick="popupCode('KarelWindow.src/M000284.html');return false;">
+          <a href="KarelWindow.src/M000314.html" target="Code" class="method-signature"
+            onclick="popupCode('KarelWindow.src/M000314.html');return false;">
           <span class="method-name">label_streets_avenues</span><span class="method-args">()</span>
           </a>
         </div>
@@ -273,12 +279,12 @@ Class <a href="KarelWindow/Wall.html" class="link">KarelWindow::Wall</a><br />
         </div>
       </div>
 
-      <div id="method-M000283" class="method-detail">
-        <a name="M000283"></a>
+      <div id="method-M000313" class="method-detail">
+        <a name="M000313"></a>
 
         <div class="method-heading">
-          <a href="KarelWindow.src/M000283.html" target="Code" class="method-signature"
-            onclick="popupCode('KarelWindow.src/M000283.html');return false;">
+          <a href="KarelWindow.src/M000313.html" target="Code" class="method-signature"
+            onclick="popupCode('KarelWindow.src/M000313.html');return false;">
           <span class="method-name">make_boundary_walls</span><span class="method-args">()</span>
           </a>
         </div>
@@ -287,12 +293,12 @@ Class <a href="KarelWindow/Wall.html" class="link">KarelWindow::Wall</a><br />
         </div>
       </div>
 
-      <div id="method-M000282" class="method-detail">
-        <a name="M000282"></a>
+      <div id="method-M000312" class="method-detail">
+        <a name="M000312"></a>
 
         <div class="method-heading">
-          <a href="KarelWindow.src/M000282.html" target="Code" class="method-signature"
-            onclick="popupCode('KarelWindow.src/M000282.html');return false;">
+          <a href="KarelWindow.src/M000312.html" target="Code" class="method-signature"
+            onclick="popupCode('KarelWindow.src/M000312.html');return false;">
           <span class="method-name">make_streets_and_avenues</span><span class="method-args">()</span>
           </a>
         </div>
@@ -301,12 +307,12 @@ Class <a href="KarelWindow/Wall.html" class="link">KarelWindow::Wall</a><br />
         </div>
       </div>
 
-      <div id="method-M000297" class="method-detail">
-        <a name="M000297"></a>
+      <div id="method-M000327" class="method-detail">
+        <a name="M000327"></a>
 
         <div class="method-heading">
-          <a href="KarelWindow.src/M000297.html" target="Code" class="method-signature"
-            onclick="popupCode('KarelWindow.src/M000297.html');return false;">
+          <a href="KarelWindow.src/M000327.html" target="Code" class="method-signature"
+            onclick="popupCode('KarelWindow.src/M000327.html');return false;">
           <span class="method-name">move_robot</span><span class="method-args">(robot, amount = -1)</span>
           </a>
         </div>
@@ -315,12 +321,12 @@ Class <a href="KarelWindow/Wall.html" class="link">KarelWindow::Wall</a><br />
         </div>
       </div>
 
-      <div id="method-M000277" class="method-detail">
-        <a name="M000277"></a>
+      <div id="method-M000304" class="method-detail">
+        <a name="M000304"></a>
 
         <div class="method-heading">
-          <a href="KarelWindow.src/M000277.html" target="Code" class="method-signature"
-            onclick="popupCode('KarelWindow.src/M000277.html');return false;">
+          <a href="KarelWindow.src/M000304.html" target="Code" class="method-signature"
+            onclick="popupCode('KarelWindow.src/M000304.html');return false;">
           <span class="method-name">number_of_streets</span><span class="method-args">()</span>
           </a>
         </div>
@@ -329,12 +335,26 @@ Class <a href="KarelWindow/Wall.html" class="link">KarelWindow::Wall</a><br />
         </div>
       </div>
 
-      <div id="method-M000289" class="method-detail">
-        <a name="M000289"></a>
+      <div id="method-M000308" class="method-detail">
+        <a name="M000308"></a>
 
         <div class="method-heading">
-          <a href="KarelWindow.src/M000289.html" target="Code" class="method-signature"
-            onclick="popupCode('KarelWindow.src/M000289.html');return false;">
+          <a href="KarelWindow.src/M000308.html" target="Code" class="method-signature"
+            onclick="popupCode('KarelWindow.src/M000308.html');return false;">
+          <span class="method-name">pause</span><span class="method-args">(menu)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000319" class="method-detail">
+        <a name="M000319"></a>
+
+        <div class="method-heading">
+          <a href="KarelWindow.src/M000319.html" target="Code" class="method-signature"
+            onclick="popupCode('KarelWindow.src/M000319.html');return false;">
           <span class="method-name">place_beeper</span><span class="method-args">(street,avenue, number)</span>
           </a>
         </div>
@@ -343,12 +363,12 @@ Class <a href="KarelWindow/Wall.html" class="link">KarelWindow::Wall</a><br />
         </div>
       </div>
 
-      <div id="method-M000292" class="method-detail">
-        <a name="M000292"></a>
+      <div id="method-M000322" class="method-detail">
+        <a name="M000322"></a>
 
         <div class="method-heading">
-          <a href="KarelWindow.src/M000292.html" target="Code" class="method-signature"
-            onclick="popupCode('KarelWindow.src/M000292.html');return false;">
+          <a href="KarelWindow.src/M000322.html" target="Code" class="method-signature"
+            onclick="popupCode('KarelWindow.src/M000322.html');return false;">
           <span class="method-name">place_wall_east_of</span><span class="method-args">(street, avenue)</span>
           </a>
         </div>
@@ -357,12 +377,12 @@ Class <a href="KarelWindow/Wall.html" class="link">KarelWindow::Wall</a><br />
         </div>
       </div>
 
-      <div id="method-M000291" class="method-detail">
-        <a name="M000291"></a>
+      <div id="method-M000321" class="method-detail">
+        <a name="M000321"></a>
 
         <div class="method-heading">
-          <a href="KarelWindow.src/M000291.html" target="Code" class="method-signature"
-            onclick="popupCode('KarelWindow.src/M000291.html');return false;">
+          <a href="KarelWindow.src/M000321.html" target="Code" class="method-signature"
+            onclick="popupCode('KarelWindow.src/M000321.html');return false;">
           <span class="method-name">place_wall_north_of</span><span class="method-args">(street, avenue)</span>
           </a>
         </div>
@@ -371,12 +391,12 @@ Class <a href="KarelWindow/Wall.html" class="link">KarelWindow::Wall</a><br />
         </div>
       </div>
 
-      <div id="method-M000294" class="method-detail">
-        <a name="M000294"></a>
+      <div id="method-M000324" class="method-detail">
+        <a name="M000324"></a>
 
         <div class="method-heading">
-          <a href="KarelWindow.src/M000294.html" target="Code" class="method-signature"
-            onclick="popupCode('KarelWindow.src/M000294.html');return false;">
+          <a href="KarelWindow.src/M000324.html" target="Code" class="method-signature"
+            onclick="popupCode('KarelWindow.src/M000324.html');return false;">
           <span class="method-name">remove_wall_east_of</span><span class="method-args">(street, avenue)</span>
           </a>
         </div>
@@ -385,12 +405,12 @@ Class <a href="KarelWindow/Wall.html" class="link">KarelWindow::Wall</a><br />
         </div>
       </div>
 
-      <div id="method-M000293" class="method-detail">
-        <a name="M000293"></a>
+      <div id="method-M000323" class="method-detail">
+        <a name="M000323"></a>
 
         <div class="method-heading">
-          <a href="KarelWindow.src/M000293.html" target="Code" class="method-signature"
-            onclick="popupCode('KarelWindow.src/M000293.html');return false;">
+          <a href="KarelWindow.src/M000323.html" target="Code" class="method-signature"
+            onclick="popupCode('KarelWindow.src/M000323.html');return false;">
           <span class="method-name">remove_wall_north_of</span><span class="method-args">(street, avenue)</span>
           </a>
         </div>
@@ -399,12 +419,12 @@ Class <a href="KarelWindow/Wall.html" class="link">KarelWindow::Wall</a><br />
         </div>
       </div>
 
-      <div id="method-M000300" class="method-detail">
-        <a name="M000300"></a>
+      <div id="method-M000330" class="method-detail">
+        <a name="M000330"></a>
 
         <div class="method-heading">
-          <a href="KarelWindow.src/M000300.html" target="Code" class="method-signature"
-            onclick="popupCode('KarelWindow.src/M000300.html');return false;">
+          <a href="KarelWindow.src/M000330.html" target="Code" class="method-signature"
+            onclick="popupCode('KarelWindow.src/M000330.html');return false;">
           <span class="method-name">run</span><span class="method-args">(*task, &amp;block)</span>
           </a>
         </div>
@@ -413,12 +433,26 @@ Class <a href="KarelWindow/Wall.html" class="link">KarelWindow::Wall</a><br />
         </div>
       </div>
 
-      <div id="method-M000287" class="method-detail">
-        <a name="M000287"></a>
+      <div id="method-M000307" class="method-detail">
+        <a name="M000307"></a>
 
         <div class="method-heading">
-          <a href="KarelWindow.src/M000287.html" target="Code" class="method-signature"
-            onclick="popupCode('KarelWindow.src/M000287.html');return false;">
+          <a href="KarelWindow.src/M000307.html" target="Code" class="method-signature"
+            onclick="popupCode('KarelWindow.src/M000307.html');return false;">
+          <span class="method-name">save</span><span class="method-args">(menu)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000317" class="method-detail">
+        <a name="M000317"></a>
+
+        <div class="method-heading">
+          <a href="KarelWindow.src/M000317.html" target="Code" class="method-signature"
+            onclick="popupCode('KarelWindow.src/M000317.html');return false;">
           <span class="method-name">scale_factor</span><span class="method-args">()</span>
           </a>
         </div>
@@ -427,12 +461,12 @@ Class <a href="KarelWindow/Wall.html" class="link">KarelWindow::Wall</a><br />
         </div>
       </div>
 
-      <div id="method-M000288" class="method-detail">
-        <a name="M000288"></a>
+      <div id="method-M000318" class="method-detail">
+        <a name="M000318"></a>
 
         <div class="method-heading">
-          <a href="KarelWindow.src/M000288.html" target="Code" class="method-signature"
-            onclick="popupCode('KarelWindow.src/M000288.html');return false;">
+          <a href="KarelWindow.src/M000318.html" target="Code" class="method-signature"
+            onclick="popupCode('KarelWindow.src/M000318.html');return false;">
           <span class="method-name">scale_to_pixels</span><span class="method-args">(street, avenue)</span>
           </a>
         </div>
@@ -441,12 +475,12 @@ Class <a href="KarelWindow/Wall.html" class="link">KarelWindow::Wall</a><br />
         </div>
       </div>
 
-      <div id="method-M000281" class="method-detail">
-        <a name="M000281"></a>
+      <div id="method-M000311" class="method-detail">
+        <a name="M000311"></a>
 
         <div class="method-heading">
-          <a href="KarelWindow.src/M000281.html" target="Code" class="method-signature"
-            onclick="popupCode('KarelWindow.src/M000281.html');return false;">
+          <a href="KarelWindow.src/M000311.html" target="Code" class="method-signature"
+            onclick="popupCode('KarelWindow.src/M000311.html');return false;">
           <span class="method-name">set_size</span><span class="method-args">(streets)</span>
           </a>
         </div>
@@ -455,12 +489,12 @@ Class <a href="KarelWindow/Wall.html" class="link">KarelWindow::Wall</a><br />
         </div>
       </div>
 
-      <div id="method-M000299" class="method-detail">
-        <a name="M000299"></a>
+      <div id="method-M000329" class="method-detail">
+        <a name="M000329"></a>
 
         <div class="method-heading">
-          <a href="KarelWindow.src/M000299.html" target="Code" class="method-signature"
-            onclick="popupCode('KarelWindow.src/M000299.html');return false;">
+          <a href="KarelWindow.src/M000329.html" target="Code" class="method-signature"
+            onclick="popupCode('KarelWindow.src/M000329.html');return false;">
           <span class="method-name">set_speed</span><span class="method-args">(amount)</span>
           </a>
         </div>
@@ -469,12 +503,26 @@ Class <a href="KarelWindow/Wall.html" class="link">KarelWindow::Wall</a><br />
         </div>
       </div>
 
-      <div id="method-M000298" class="method-detail">
-        <a name="M000298"></a>
+      <div id="method-M000309" class="method-detail">
+        <a name="M000309"></a>
 
         <div class="method-heading">
-          <a href="KarelWindow.src/M000298.html" target="Code" class="method-signature"
-            onclick="popupCode('KarelWindow.src/M000298.html');return false;">
+          <a href="KarelWindow.src/M000309.html" target="Code" class="method-signature"
+            onclick="popupCode('KarelWindow.src/M000309.html');return false;">
+          <span class="method-name">toggle_trace</span><span class="method-args">(menu)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000328" class="method-detail">
+        <a name="M000328"></a>
+
+        <div class="method-heading">
+          <a href="KarelWindow.src/M000328.html" target="Code" class="method-signature"
+            onclick="popupCode('KarelWindow.src/M000328.html');return false;">
           <span class="method-name">turn_left_robot</span><span class="method-args">(robot)</span>
           </a>
         </div>
@@ -483,12 +531,12 @@ Class <a href="KarelWindow/Wall.html" class="link">KarelWindow::Wall</a><br />
         </div>
       </div>
 
-      <div id="method-M000296" class="method-detail">
-        <a name="M000296"></a>
+      <div id="method-M000326" class="method-detail">
+        <a name="M000326"></a>
 
         <div class="method-heading">
-          <a href="KarelWindow.src/M000296.html" target="Code" class="method-signature"
-            onclick="popupCode('KarelWindow.src/M000296.html');return false;">
+          <a href="KarelWindow.src/M000326.html" target="Code" class="method-signature"
+            onclick="popupCode('KarelWindow.src/M000326.html');return false;">
           <span class="method-name">turn_off_robot</span><span class="method-args">(robot)</span>
           </a>
         </div>

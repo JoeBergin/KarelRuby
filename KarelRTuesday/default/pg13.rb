@@ -1,6 +1,7 @@
 #!/opt/local/bin/ruby
 
 $graphical = false
+$tracing = true
 
 require "ur_robot"
 

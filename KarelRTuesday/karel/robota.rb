@@ -113,8 +113,12 @@ class Robota
       running = ", not running"
     end
     howMany = @beepers
+    a_color = ""
+    if @color != nil
+      a_color = @color.capitalize()
+    end
     howMany = "infinitely many" if howMany == INFINITY
-    return "#{self.class} with ID #@ID at (#@street, #@avenue) facing #@direction with " + howMany.to_s + " beepers" + running
+    return a_color.to_s + " #{self.class} with ID #@ID at (#@street, #@avenue) facing #@direction with " + howMany.to_s + " beepers" + running
   end
   
   def display()

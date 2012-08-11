@@ -10,11 +10,11 @@
   <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
 </head>
 <body class="standalone-code">
-  <pre><span class="ruby-comment cmt"># File karel/tk_robot_world.rb, line 424</span>
+  <pre><span class="ruby-comment cmt"># File karel/tk_robot_world.rb, line 425</span>
 <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">window</span> (<span class="ruby-identifier">size</span> = <span class="ruby-value">12</span>, <span class="ruby-identifier">speed</span> = <span class="ruby-value">100</span>)
   <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span> <span class="ruby-identifier">$window</span>
     <span class="ruby-identifier">size</span> = <span class="ruby-value">10</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">size</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-value">0</span>
-    <span class="ruby-identifier">$window</span> = <span class="ruby-constant">KarelWindow</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">size</span>, <span class="ruby-identifier">size</span>, <span class="ruby-identifier">$window_size</span>, <span class="ruby-identifier">lambda</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">speed_call_back</span>(<span class="ruby-identifier">x</span>)})
+    <span class="ruby-identifier">$window</span> = <span class="ruby-constant">KarelWindow</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">size</span>, <span class="ruby-identifier">size</span>, <span class="ruby-identifier">$window_size</span>)
     <span class="ruby-constant">RobotWorld</span>.<span class="ruby-identifier">set_speed</span>(<span class="ruby-identifier">speed</span>)
   <span class="ruby-keyword kw">end</span>
   <span class="ruby-identifier">$window</span>

@@ -50,6 +50,12 @@ class RobotWorldBase
     @Robots[robot] = state
     nil
   end
+    
+  def pause_all()
+    @robots.keys.each do |robot|
+      robot.one_pause()
+    end
+  end
   
   # Record a robot's actions 
   def update(robot, action, state)
@@ -91,7 +97,7 @@ class RobotWorldBase
     delay = 1 if delay <= 0
     sleep(delay / 10.0)
     @Runnables.each{|thread| thread.wakeup}
-    # @Runnables.each{|thread| thread.join}
+     @Runnables.each{|thread| thread.join}
   end
   
   # def pauseall()

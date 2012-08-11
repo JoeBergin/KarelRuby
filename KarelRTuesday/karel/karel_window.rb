@@ -9,9 +9,14 @@ require "monitor"
   WEST = WestDirection.instance
   SOUTH = SouthDirection.instance
   EAST = EastDirection.instance
+  
+$triangle_beepers = false if $triangle_beepers == nil
 
 $inset = 30 
-$windowBottom = 800
+$window_bottom = 800 if $window_bottom == nil
+if $small_window
+  $window_bottom = 600
+end
 $moveParameters = {NORTH => [0, -1], WEST => [-1, 0], SOUTH => [0, 1], EAST => [1, 0] }
 $directions = [NORTH, WEST, SOUTH, EAST]
 $imageMapOn = {}
@@ -19,7 +24,7 @@ $imageMapOff = {}
 
 $images_base = "../karel/images/" if $images_base == nil
 
- class RobotImage
+class RobotImage
 
  # Create a screen image of a robot
  def initialize(street = 1, avenue = 1, direction = NORTH, color = nil, window)
@@ -31,7 +36,7 @@ $images_base = "../karel/images/" if $images_base == nil
 
     if ! $smallImages
       @@size = 37
-      @@backset = 18
+      @@backset = @@size/2 #18
     end
     @scaler = lambda{|x,y| window.scale_to_pixels(x,y)} #i.e. the function itself
     @scale_factor = lambda{window.scale_factor}
@@ -49,8 +54,8 @@ $images_base = "../karel/images/" if $images_base == nil
   end
   
   $smallImages = true
-  @@backset = 12 #12 # 18
   @@size = 25 #25 #37 
+  @@backset = @@size/2 #12 #12 # 18
   @bg_color = :white
   
   def scaler (x, y)
@@ -131,8 +136,8 @@ end # of RobotImage class
 class KarelWindow < TkFrame
   @@Beepers = {}
   @@delay = 20
-  @@showing_pause = false
-  @@threads_paused = true
+  # @@showing_pause = false
+  # @@threads_paused = true
   
   def cursor(which) # use "dot" or "X_cursor" or "right_side" or "top_side"
   begin
@@ -145,34 +150,64 @@ end
     @_streets
   end
   
-  def initialize(streets, avenues, size = $windowBottom, callback = nil)
+  def initialize(streets, avenues, size = $window_bottom)
     super()
     
     @root = TkRoot.new{
         title  ' Karel\'s World '
         width size + 60
         height size
-        background 'white'
+        background :white
     }
 
-    $smallImages = streets > 10
-    $windowBottom = size
+    $smallImages = streets > 9
+    $window_bottom = size
     @height = size
-    geometryString = ($windowBottom + 80).to_s + 'x' + ($windowBottom + 65).to_s + "+55+25" # 820 + 60 for the speed buttons
+    geometryString = ($window_bottom + 80).to_s + 'x' + ($window_bottom + 65).to_s + "+55+25" # 820 + 60 for the speed buttons
     @root.geometry(newGeometry = geometryString)
     
     bar = TkMenu.new
     def end_program(menu)
        exit()
     end
+    
+    def save(menu)
+      file = Tk.getSaveFile
+      if file
+        $world.save_world(file)
+        puts "file saved: " + file.to_s
+      end
+      rescue Exception => e
+        puts "No file selected"
+    end
+    
+    def pause(menu)
+      $world.pause_all()
+    end
+        
+    def toggle_trace(menu)
+      if $tracing == nil
+        $tracing = false
+      end
+      $tracing = ! $tracing
+    end
            
-        fil = TkMenu.new
-        fil.add_command(:label => 'Quit   ^Q', :command => lambda {|x='Quit'| end_program(x)})
-        bar.add_cascade(:label => :File, :menu => fil)
+        fil = TkMenu.new(:font => 'Monaco')
+        fil.add_command(:label => 'Pause All     ^P', :command => lambda {|x='Pause Robots'| pause(x)})
+        fil.add_command(:label => 'Toggle Trace  ^T', :command => lambda {|x='Toggle Trace'| toggle_trace(x)})
+        fil.add_command(:label => 'Save World    ^S', :command => lambda {|x='Save World'| save(x)})
+        fil.add_command(:label => 'Quit          ^Q', :command => lambda {|x='Quit'| end_program(x)})
+        bar.add_cascade(:label => :Karel, :menu => fil)
         @root.configure(:menu =>  bar)   
         
         bind_all('Command-q'){end_program('Command-q')} # Mac standard
         bind_all('Control-q'){end_program('Control-q')} # Windows
+        bind_all('Command-s'){save('Command-s')} # Mac standard
+        bind_all('Control-s'){save('Control-s')} # Windows
+        bind_all('Command-p'){pause('Command-p')} # Mac standard
+        bind_all('Control-p'){pause('Control-p')} # Windows
+        bind_all('Command-t'){toggle_trace('Command-t')} # Mac standard
+        bind_all('Control-t'){toggle_trace('Control-t')} # Windows
         bind_all('Destroy'){end_program('Window Closed')}
         
         @_streets = streets
@@ -196,25 +231,26 @@ end
         @speedLevel.grid(:row => 0, :column => 0, :sticky=>"news")
 
         slower = TkButton.new(:text => "Slower", :command => lambda{
-          @@delay = [@@delay + 10, 100].min
+          @@delay = 1 if @@delay == 0
+          @@delay = [(@@delay + 0.10*@@delay).ceil, 100].min
           RobotWorld.set_speed 100 - @@delay
           })
         slower.grid(:row => 0, :column => 1)
         
         faster = TkButton.new(:text => "Faster", :command => lambda{
-          @@delay = [@@delay - 10, 0].max
+          @@delay = [(@@delay - 0.10*@@delay).floor, 0].max
           RobotWorld.set_speed 100 - @@delay
            })
         faster.grid(:row => 1, :column => 1)
         
-        @height = @oldHeight = $windowBottom
-        @_bottom = $windowBottom - $inset
+        @height = @oldHeight = $window_bottom
+        @_bottom = $window_bottom - $inset
         @_left = $inset
         @_top = $inset
         @_right = @height
         @inset = $inset
         
-        @canvas = Canvas.new(root, :height => $windowBottom, :width => $windowBottom, :bg => 'white')
+        @canvas = Canvas.new(root, :height => $window_bottom, :width => $window_bottom, :bg => 'white')
       
         @canvas.grid(:row => 2, :column => 0, :sticky=>"news")
       if $smallImages  
@@ -228,15 +264,15 @@ end
         image7 = TkPhotoImage.new(:file => $images_base+'karelsOff.gif')
         image8 = TkPhotoImage.new(:file => $images_base+'kareleOff.gif')
       else # large images
-        image1 = TkPhotoImage.new(:file => $images_base+'karelnL.gif')
-        image2 = TkPhotoImage.new(:file => $images_base+'karelwL.gif')
-        image3 = TkPhotoImage.new(:file => $images_base+'karelsL.gif')
-        image4 = TkPhotoImage.new(:file => $images_base+'kareleL.gif')
+        image1 = TkPhotoImage.new(:file => $images_base+'karelnLn.gif')
+        image2 = TkPhotoImage.new(:file => $images_base+'karelwLn.gif')
+        image3 = TkPhotoImage.new(:file => $images_base+'karelsLn.gif')
+        image4 = TkPhotoImage.new(:file => $images_base+'kareleLn.gif')
         
-        image5 = TkPhotoImage.new(:file => $images_base+'karelnOffL.gif')
-        image6 = TkPhotoImage.new(:file => $images_base+'karelwOffL.gif')
-        image7 = TkPhotoImage.new(:file => $images_base+'karelsOffL.gif')
-        image8 = TkPhotoImage.new(:file => $images_base+'kareleOffL.gif')
+        image5 = TkPhotoImage.new(:file => $images_base+'karelnOffLn.gif')
+        image6 = TkPhotoImage.new(:file => $images_base+'karelwOffLn.gif')
+        image7 = TkPhotoImage.new(:file => $images_base+'karelsOffLn.gif')
+        image8 = TkPhotoImage.new(:file => $images_base+'kareleOffLn.gif')
       end         
         $imageMapOn[NORTH] = image1 #knOn
         $imageMapOn[WEST] = image2 #kwOn
@@ -274,10 +310,10 @@ end
     @_streets.times do |i|
       x,y = scale_to_pixels(i + 1, 0.5)
       tx,ty = scale_to_pixels(i + 1, @_streets + 0.5)
-      @_walls << TkcLine.new(@canvas,x,y,tx,ty, :fill => 'red')
+      @_walls << TkcLine.new(@canvas,x,y,tx,ty, :fill => :red)
       x, y = scale_to_pixels(0.5, i + 1)
       tx, ty = scale_to_pixels(@_streets + 0.5, i + 1)
-      @_walls << TkcLine.new(@canvas,x,y,tx,ty, :fill => 'red')
+      @_walls << TkcLine.new(@canvas,x,y,tx,ty, :fill => :red)
     end
   end
   
@@ -290,9 +326,9 @@ end
   def label_streets_avenues
     @_streets.times do |i|
       x, y = scale_to_pixels(i + 1, 0.25)
-      @_walls << TkcText.new(@canvas, x, y, :fill => 'black', :text => (i+1).to_s)
+      @_walls << TkcText.new(@canvas, x, y, :fill => :black, :text => (i+1).to_s)
       x, y = scale_to_pixels(0.25, i + 1)
-      @_walls << TkcText.new(@canvas, x, y, :fill => 'black', :text => (i+1).to_s)
+      @_walls << TkcText.new(@canvas, x, y, :fill => :black, :text => (i+1).to_s)
     end
   end
   
@@ -413,24 +449,25 @@ end
         end
             
         def place()
-            sizeFactor = 0.5 #Change this to change beeper size. The others scale from it. 
+            sizeFactor = 0.6 #Change this to change beeper size. The others scale from it. 
             placeFactor = 0.5 * sizeFactor
             val = @number.to_s
-            # if @number < 0
-              # val = 'N'
-            # end
             val = 'N' if @number < 0
+            # len = val.length()
             x,y = scaler(@street+placeFactor, @avenue-placeFactor)
-=begin     #triangle beepers       
+            # $triangle_beepers = false
+  
+         if $triangle_beepers   
             where = []
             where << scaler(@street+sizeFactor, @avenue)
             where << scaler(@street-placeFactor, @avenue-placeFactor)
             where << scaler(@street-placeFactor, @avenue+placeFactor)
-            oval = TkcPolygon.new(@canvas, where, :fill => "black", :smooth => false, :tags=>@tag)
-=end
-            oval = TkcOval.new(@canvas, x, y, x + scale_factor*sizeFactor, y + scale_factor*sizeFactor, :fill=> 'black', :tags => @tag)
+            oval = TkcPolygon.new(@canvas, where, :fill => :black, :smooth => false, :tags=>@tag)
+         else
+            oval = TkcOval.new(@canvas, x, y, x + scale_factor*sizeFactor, y + scale_factor*sizeFactor, :fill=> :black, :tags => @tag)
+         end
             TkcText.new(oval, x + scale_factor*placeFactor,  y + scale_factor*placeFactor,
-                   :tags => @tag, :width => 1, :text =>val, :fill => 'white')
+                   :tags => @tag, :width => 0, :text =>val, :fill => :white)
         end
 
         def move_scale
@@ -458,10 +495,10 @@ end
       @scale_factor = lambda{window.scale_factor}
       if@isVertical
         x, y = scaler(street - 0.5, avenue + 0.5)
-        @code = TkcLine.new(@canvas, x, y, x, y - scale_factor, :width => 2)
-      else
+        @code = TkcLine.new(@canvas, x, y, x, y - scale_factor, :width => 2, :fill => :black)
+      else 
         x, y = scaler(street + 0.5, avenue - 0.5)
-        @code = TkcLine.new(@canvas, x, y, x + scale_factor, y, :width => 2)
+        @code = TkcLine.new(@canvas, x, y, x + scale_factor, y, :width => 2, :fill => :black)
       end
     end
     
@@ -486,10 +523,10 @@ end
       @canvas.delete(@code)
       if@isVertical
         x, y = scaler(street - 0.5, avenue + 0.5)
-        @code = TkcLine.new(@canvas, x, y, x, y - scale_factor, :width => 2)
+        @code = TkcLine.new(@canvas, x, y, x, y - scale_factor, :width => 2, :fill => :black)
       else
         x, y = scaler(street + 0.5, avenue - 0.5)
-        @code = TkcLine.new(@canvas, x, y, x + scale_factor, y, :width => 2)
+        @code = TkcLine.new(@canvas, x, y, x + scale_factor, y, :width => 2, :fill => :black)
       end
     end
     
