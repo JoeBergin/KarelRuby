@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>test_move (TestRobots)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File karel/test_robots.rb, line 66</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_move</span>
+    <span class="ruby-comment cmt">#@world.place_e_w_wall(2, 3, 1)</span>
+    <span class="ruby-comment cmt">#@world.clear</span>
+    <span class="ruby-ivar">@world</span>.<span class="ruby-identifier">read_world</span>(<span class="ruby-value str">&quot;../worlds/beepers.txt&quot;</span>)
+    <span class="ruby-ivar">@karel</span> = <span class="ruby-constant">UrRobot</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">4</span>, <span class="ruby-value">3</span>, <span class="ruby-constant">Robota</span><span class="ruby-operator">::</span><span class="ruby-constant">SOUTH</span>, <span class="ruby-value">0</span>)
+    <span class="ruby-ivar">@world</span>.<span class="ruby-identifier">show_world_with_robots</span>()
+    <span class="ruby-ivar">@karel</span>.<span class="ruby-identifier">move</span>
+    <span class="ruby-ivar">@karel</span>.<span class="ruby-identifier">turn_left</span>
+    <span class="ruby-ivar">@world</span>.<span class="ruby-identifier">show_world_with_robots</span>()
+    <span class="ruby-comment cmt"># @world.save_world(&quot;../worlds/other.txt&quot;)</span>
+    <span class="ruby-ivar">@karel</span>.<span class="ruby-identifier">turn_left</span>
+    <span class="ruby-ivar">@karel</span>.<span class="ruby-identifier">turn_left</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;neighbors: &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@karel</span>.<span class="ruby-identifier">neighbors</span>.<span class="ruby-identifier">to_s</span>
+    <span class="ruby-ivar">@karel</span>.<span class="ruby-identifier">assert_facing</span>(<span class="ruby-constant">Robota</span><span class="ruby-operator">::</span><span class="ruby-constant">WEST</span>)
+    <span class="ruby-comment cmt">#   begin</span>
+    <span class="ruby-comment cmt">#     @karel.move</span>
+    <span class="ruby-comment cmt">#     fail</span>
+    <span class="ruby-comment cmt">#   rescue FrontIsBlocked</span>
+    <span class="ruby-comment cmt">#     #nothing</span>
+    <span class="ruby-comment cmt">#   end</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

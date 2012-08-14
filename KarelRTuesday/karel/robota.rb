@@ -101,11 +101,12 @@ class Robota
     #Nothing
   end
   
+  # Return true if this robot is running. 
   def running?
     return false
   end
 
-  
+  # Return a string representation of the state of this robot. 
   def to_s
     if running?
       running = ", running"
@@ -121,6 +122,7 @@ class Robota
     return a_color.to_s + " #{self.class} with ID #@ID at (#@street, #@avenue) facing #@direction with " + howMany.to_s + " beepers" + running
   end
   
+  # Show the state of this robot on standard output (the console).
   def display()
     puts inspect
   end

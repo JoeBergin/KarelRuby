@@ -2,23 +2,25 @@
 require "robot"
 require "turner"
 
-class BeeperFinder < Robot
-    include Turner
-    
-    def find_beeper()   
-    while not next_to_a_beeper?()  
-       move_toward_beeper()    
-    end
-end
+ class BeeperFinder < Robot
+   include Turner
+   
+   # move to the beeper
+   def find_beeper()
+      while not next_to_a_beeper?()
+         move_toward_beeper()
+      end
+   end
 
-def move_toward_beeper() 
-    if front_is_clear?()  
-        move()
-    else 
-        turn_left()
-    end
-end
-    
+   # make one "step" of progress in moving toward beeper
+   def move_toward_beeper()
+      if front_is_clear?()
+         move()
+      else
+         turn_left()
+      end
+   end
+
 end
 
 def task

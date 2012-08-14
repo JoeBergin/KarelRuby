@@ -12,7 +12,7 @@ require 'tk'
 class RemoteControl < TkFrame
   @@count = 0
 
-  def initialize (name, street, avenue, direction, beepers, color=nil)
+  def initialize (name, street, avenue, direction, beepers, color=TRANSPARENT)
     super()
     @robot = UrRobot.new(street, avenue, direction, beepers, color)
     @name = name

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>place_beepers (RobotWorld)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File karel/robot_world.rb, line 54</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">place_beepers</span>(<span class="ruby-identifier">street</span>, <span class="ruby-identifier">avenue</span>, <span class="ruby-identifier">howMany</span>, <span class="ruby-identifier">byRobot</span> = <span class="ruby-keyword kw">false</span>)
+    <span class="ruby-identifier">key</span> = [<span class="ruby-identifier">street</span>, <span class="ruby-identifier">avenue</span>]
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">howMany</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Robota</span><span class="ruby-operator">::</span><span class="ruby-constant">INFINITY</span> <span class="ruby-operator">||</span> <span class="ruby-ivar">@Beepers</span>[<span class="ruby-identifier">key</span>] <span class="ruby-operator">==</span> <span class="ruby-constant">Robota</span><span class="ruby-operator">::</span><span class="ruby-constant">INFINITY</span>
+      <span class="ruby-ivar">@Beepers</span>[<span class="ruby-identifier">key</span>] = <span class="ruby-constant">Robota</span><span class="ruby-operator">::</span><span class="ruby-constant">INFINITY</span>
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-ivar">@Beepers</span>[<span class="ruby-identifier">key</span>] <span class="ruby-operator">+=</span> <span class="ruby-identifier">howMany</span>   
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">nil</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

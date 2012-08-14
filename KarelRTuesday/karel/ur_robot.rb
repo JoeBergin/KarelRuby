@@ -5,6 +5,8 @@ require "robota"
 require "observer"
 require "monitor"
 
+TRANSPARENT = nil # shield color for robots = no shield
+
 # The simplest kind of instantiable robot. Has all of the capabilities defined in Robota
 class UrRobot < Robota
   include Observable
@@ -24,6 +26,7 @@ class UrRobot < Robota
     @userPausing = false
   end
   
+  # Create and return a faithful copy of this robot
   def clone()
     result = super()
     result.add_observer(Robota::World)
@@ -40,15 +43,17 @@ class UrRobot < Robota
     return [@street, @avenue, @direction, @beepers, @runstate, @color]
   end
   
+  # Return true if this robot is running. 
   def running?
     return @runstate
   end
   
   private :state
   
-  def show_state(msg)
-    puts msg + ' ' + state.to_s  
-  end
+  # return the current state of this robot - encoded
+  # def show_state(msg)
+    # puts msg + ' ' + state.to_s  
+  # end
   
   # Move one block in the current direction (provided the front is clear)
   def move
@@ -138,7 +143,7 @@ class UrRobot < Robota
     return result
   end
   
-  
+  # Cause this robot to pause until a return is enterd in the console. 
   def pause(action)
     # if not $thread_release
       # $thread_monitor.wait_until{$thread_release}
@@ -154,11 +159,13 @@ class UrRobot < Robota
   
   @quick_pause = false
   
+  # Cause the robot to pause once and then resume after a return is typed
   def one_pause()
     @quick_pause = true
     @pausing = true
   end
   
+  # Cause this robot to pause for each action. 
   def set_pausing(pause = true)
     @pausing = pause
   end

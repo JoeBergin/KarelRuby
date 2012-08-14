@@ -26,6 +26,8 @@ class Philosopher < Robot
     end
   end
   
+  # Waste time by turning in place. This actually improves the threaded
+  # behavior. 
   def spin()
     turn_around()
     turn_around()
@@ -64,7 +66,6 @@ class Philosopher < Robot
     move()
     put_beeper()
     turn_right()
-    # show_state("Eat ")
   end
   
   # return the two forks so as to return to thinking      

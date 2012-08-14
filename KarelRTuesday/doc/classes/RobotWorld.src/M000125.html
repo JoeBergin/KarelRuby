@@ -5,15 +5,15 @@
 
 <html>
 <head>
-  <title>instance (RobotWorld)</title>
+  <title>place_wall_east_of (RobotWorld)</title>
   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
   <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
 </head>
 <body class="standalone-code">
-  <pre><span class="ruby-comment cmt"># File karel/robot_world.rb, line 29</span>
-  <span class="ruby-keyword kw">def</span> <span class="ruby-constant">RobotWorld</span>.<span class="ruby-identifier">instance</span>()
-    <span class="ruby-ivar">@@instance</span> = <span class="ruby-identifier">new</span>(<span class="ruby-value str">&quot;Karel's World&quot;</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@@instance</span>
-    <span class="ruby-ivar">@@instance</span>
+  <pre><span class="ruby-comment cmt"># File karel/robot_world.rb, line 83</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">place_wall_east_of</span>(<span class="ruby-identifier">street</span>, <span class="ruby-identifier">avenue</span>)
+    <span class="ruby-ivar">@NorthSouthWalls</span>[[<span class="ruby-identifier">street</span>, <span class="ruby-identifier">avenue</span>]] = <span class="ruby-value">1</span>
+    <span class="ruby-keyword kw">nil</span>
   <span class="ruby-keyword kw">end</span></pre>
 </body>
 </html>

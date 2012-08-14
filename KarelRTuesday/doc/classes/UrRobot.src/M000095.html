@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>put_beeper (UrRobot)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File karel/ur_robot.rb, line 102</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">put_beeper</span>
+    <span class="ruby-identifier">pause</span>(<span class="ruby-value str">&quot;put_beeper&quot;</span>)
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">RobotNotRunning</span>, <span class="ruby-value str">&quot; while putting a beeper&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span> <span class="ruby-ivar">@runstate</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@beepers</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Robota</span><span class="ruby-operator">::</span><span class="ruby-constant">INFINITY</span>
+      <span class="ruby-comment cmt"># nothing</span>
+    <span class="ruby-keyword kw">elsif</span> <span class="ruby-ivar">@beepers</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">1</span>
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">turn_off</span>
+      <span class="ruby-identifier">raise</span> <span class="ruby-constant">NoBeepersInBeeperBag</span>, <span class="ruby-value str">&quot;(#@street, #@avenue)&quot;</span>
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-ivar">@beepers</span> <span class="ruby-operator">-=</span> <span class="ruby-value">1</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-constant">Robota</span><span class="ruby-operator">::</span><span class="ruby-constant">World</span>.<span class="ruby-identifier">place_beepers</span>(<span class="ruby-ivar">@street</span>, <span class="ruby-ivar">@avenue</span>, <span class="ruby-value">1</span>, <span class="ruby-keyword kw">true</span>)
+    <span class="ruby-identifier">changed</span>
+    <span class="ruby-identifier">notify_observers</span>(<span class="ruby-keyword kw">self</span>, <span class="ruby-constant">PUT_BEEPER_ACTION</span>, <span class="ruby-identifier">state</span>)
+    <span class="ruby-keyword kw">self</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

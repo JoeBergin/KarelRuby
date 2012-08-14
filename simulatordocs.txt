@@ -33,7 +33,8 @@ The world api is detailed in the book (appendix)
 The world files are identical to those of Karel J Robot and Monty Karel
 so any you build in any of these work in the others. The WorldMaker will 
 create and edit these files. The world maker issues no warning if you close before
-saving and your edits will be lost.
+saving and your edits will be lost, however the save dialog will appear if you
+close with unsaved changes.
 
 The RemoteControl can have a color like any robot. Its controller
 dialog will have the same color background.

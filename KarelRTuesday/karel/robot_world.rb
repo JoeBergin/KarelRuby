@@ -38,7 +38,8 @@ class RobotWorld < RobotWorldBase
     @NorthSouthWalls = Hash.new(0)
     @Runnables = []
   end
-
+ 
+  # Return the name of this world
   def name
     @name
   end
@@ -104,9 +105,9 @@ class RobotWorld < RobotWorldBase
     return @NorthSouthWalls[[street, avenue]] > 0
   end
   
-  def set_size(numberOfStreets = 10, numberOfAvenues = 10)
-    #TODO
-  end
+  # def set_size(numberOfStreets = 10, numberOfAvenues = 10)
+    # #TODO
+  # end
 
   #        This two dimensional structure has the following properties. 
   #        Every other row and every other column is initially blank. Each cell is a three char string.

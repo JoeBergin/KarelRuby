@@ -51,6 +51,7 @@ class RobotWorldBase
     nil
   end
     
+  # pause all of the robots for one step - requiring each to be restarted with a return enterd in console. 
   def pause_all()
     @robots.keys.each do |robot|
       robot.one_pause()

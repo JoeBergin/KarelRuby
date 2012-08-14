@@ -5,14 +5,34 @@
 
 <html>
 <head>
-  <title>place_wall_east_of (RobotWorld)</title>
+  <title>read_world (RobotWorld)</title>
   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
   <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
 </head>
 <body class="standalone-code">
-  <pre><span class="ruby-comment cmt"># File karel/robot_world.rb, line 82</span>
-  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">place_wall_east_of</span>(<span class="ruby-identifier">street</span>, <span class="ruby-identifier">avenue</span>)
-    <span class="ruby-ivar">@NorthSouthWalls</span>[[<span class="ruby-identifier">street</span>, <span class="ruby-identifier">avenue</span>]] = <span class="ruby-value">1</span>
+  <pre><span class="ruby-comment cmt"># File karel/robot_world.rb, line 241</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">read_world</span>(<span class="ruby-identifier">filename</span>)
+    <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">filename</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">file</span><span class="ruby-operator">|</span> <span class="ruby-identifier">file</span>.<span class="ruby-identifier">each_line</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">line</span> <span class="ruby-operator">!=</span> <span class="ruby-value str">&quot;KarelWorld&quot;</span>
+          <span class="ruby-identifier">key</span>, <span class="ruby-identifier">street</span>, <span class="ruby-identifier">avenue</span>, <span class="ruby-identifier">other</span> = <span class="ruby-identifier">line</span>.<span class="ruby-identifier">split</span>
+          <span class="ruby-identifier">street</span>, <span class="ruby-identifier">avenue</span>, <span class="ruby-identifier">other</span> = <span class="ruby-identifier">street</span>.<span class="ruby-identifier">to_i</span>, <span class="ruby-identifier">avenue</span>.<span class="ruby-identifier">to_i</span>, <span class="ruby-identifier">other</span>.<span class="ruby-identifier">to_i</span>
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">key</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;beepers&quot;</span>
+            <span class="ruby-identifier">place_beepers</span>(<span class="ruby-identifier">street</span>, <span class="ruby-identifier">avenue</span>, <span class="ruby-identifier">other</span>)
+          <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">key</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;eastwestwalls&quot;</span>
+            <span class="ruby-keyword kw">while</span> <span class="ruby-identifier">avenue</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-identifier">other</span>
+              <span class="ruby-identifier">place_wall_north_of</span>(<span class="ruby-identifier">street</span>, <span class="ruby-identifier">avenue</span>)
+              <span class="ruby-identifier">avenue</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+            <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">key</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;northsouthwalls&quot;</span>
+            <span class="ruby-identifier">street</span>, <span class="ruby-identifier">avenue</span> = <span class="ruby-identifier">avenue</span>, <span class="ruby-identifier">street</span>
+            <span class="ruby-keyword kw">while</span> <span class="ruby-identifier">street</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-identifier">other</span>
+              <span class="ruby-identifier">place_wall_east_of</span>(<span class="ruby-identifier">street</span>, <span class="ruby-identifier">avenue</span>)
+              <span class="ruby-identifier">street</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+            <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
     <span class="ruby-keyword kw">nil</span>
   <span class="ruby-keyword kw">end</span></pre>
 </body>

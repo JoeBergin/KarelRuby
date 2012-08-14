@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>test_neighbors (TestRobots)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File karel/test_robots.rb, line 129</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_neighbors</span>
+    <span class="ruby-ivar">@charlie</span> = <span class="ruby-constant">Robot</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">3</span>, <span class="ruby-value">3</span>, <span class="ruby-constant">Robota</span><span class="ruby-operator">::</span><span class="ruby-constant">EAST</span>, <span class="ruby-value">0</span>)
+    <span class="ruby-ivar">@mary</span> = <span class="ruby-constant">Robot</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">3</span>, <span class="ruby-value">3</span>, <span class="ruby-constant">Robota</span><span class="ruby-operator">::</span><span class="ruby-constant">NORTH</span>, <span class="ruby-value">1</span>)
+    <span class="ruby-identifier">val</span> = <span class="ruby-ivar">@karel</span>.<span class="ruby-identifier">neighbors</span>.<span class="ruby-identifier">each</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">neighbor</span><span class="ruby-operator">|</span> <span class="ruby-identifier">puts</span> <span class="ruby-identifier">neighbor</span>.<span class="ruby-identifier">to_s</span>}
+    <span class="ruby-identifier">assert_equal</span>(<span class="ruby-value str">&quot;Array&quot;</span>, <span class="ruby-identifier">val</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">to_s</span>)
+    <span class="ruby-identifier">assert_equal</span>(<span class="ruby-value">2</span>, <span class="ruby-identifier">val</span>.<span class="ruby-identifier">length</span>)
+    <span class="ruby-ivar">@world</span>.<span class="ruby-identifier">assert_robots_at</span>(<span class="ruby-value">3</span>, <span class="ruby-value">3</span>)
+    <span class="ruby-identifier">assert_raise</span>(<span class="ruby-constant">NoBeepers</span>){<span class="ruby-ivar">@world</span>.<span class="ruby-identifier">assert_beepers_at</span>(<span class="ruby-value">3</span>,<span class="ruby-value">3</span>)}
+    <span class="ruby-ivar">@world</span>.<span class="ruby-identifier">place_beeper</span>(<span class="ruby-value">3</span>,<span class="ruby-value">3</span>)
+    <span class="ruby-ivar">@world</span>.<span class="ruby-identifier">assert_beepers_at</span>(<span class="ruby-value">3</span>,<span class="ruby-value">3</span>)
+    <span class="ruby-identifier">assert</span>(<span class="ruby-ivar">@charlie</span>.<span class="ruby-identifier">next_to_a_robot?</span>)
+    <span class="ruby-ivar">@karel</span>.<span class="ruby-identifier">assert_at</span>(<span class="ruby-value">3</span>, <span class="ruby-value">3</span>)
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

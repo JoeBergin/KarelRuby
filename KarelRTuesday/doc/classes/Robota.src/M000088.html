@@ -5,21 +5,14 @@
 
 <html>
 <head>
-  <title>to_s (Robota)</title>
+  <title>display (Robota)</title>
   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
   <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
 </head>
 <body class="standalone-code">
-  <pre><span class="ruby-comment cmt"># File karel/robota.rb, line 109</span>
-  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_s</span>
-    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">running?</span>
-      <span class="ruby-identifier">running</span> = <span class="ruby-value str">&quot;, running&quot;</span>
-    <span class="ruby-keyword kw">else</span>
-      <span class="ruby-identifier">running</span> = <span class="ruby-value str">&quot;, not running&quot;</span>
-    <span class="ruby-keyword kw">end</span>
-    <span class="ruby-identifier">howMany</span> = <span class="ruby-ivar">@beepers</span>
-    <span class="ruby-identifier">howMany</span> = <span class="ruby-value str">&quot;infinitely many&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">howMany</span> <span class="ruby-operator">==</span> <span class="ruby-constant">INFINITY</span>
-    <span class="ruby-keyword kw">return</span> <span class="ruby-node">&quot;#{self.class} with ID #@ID at (#@street, #@avenue) facing #@direction with &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">howMany</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot; beepers&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">running</span>
+  <pre><span class="ruby-comment cmt"># File karel/robota.rb, line 126</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">display</span>()
+    <span class="ruby-identifier">puts</span> <span class="ruby-identifier">inspect</span>
   <span class="ruby-keyword kw">end</span></pre>
 </body>
 </html>

@@ -2,8 +2,7 @@
 #Copyright 2012 Joseph Bergin
 #License: Creative Commons Attribution-Noncommercial-Share Alike 3.0 United States License
 
-$graphical = true
-
+require "run_params"
 require "stair_sweeper"
 require "robota"
 
@@ -12,7 +11,7 @@ def task()
   world = Robota::World
   world.read_world("../worlds/stair_world.txt")
   
-  karel = StairSweeper.new(1, 1, EAST, 0)
+  karel = StairSweeper.new(1, 1, EAST, 0, TRANSPARENT)
   karel.climb_stair()
   karel.pick_beeper()
   karel.climb_stair()

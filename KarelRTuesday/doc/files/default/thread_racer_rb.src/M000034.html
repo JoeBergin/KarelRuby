@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>task (default/thread_racer.rb)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File default/thread_racer.rb, line 30</span>
+<span class="ruby-keyword kw">def</span> <span class="ruby-identifier">task</span>()
+    <span class="ruby-identifier">world</span> = <span class="ruby-constant">RobotWorld</span>.<span class="ruby-identifier">instance</span>()
+    <span class="ruby-identifier">world</span>.<span class="ruby-identifier">place_beepers</span>(<span class="ruby-value">1</span>, <span class="ruby-value">1</span>, <span class="ruby-value">1</span>)
+    
+    <span class="ruby-identifier">alex</span> = <span class="ruby-constant">Racer</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">100</span>, <span class="ruby-value">1</span>, <span class="ruby-constant">SOUTH</span>)
+    <span class="ruby-identifier">jose</span> = <span class="ruby-constant">Racer</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">1</span>, <span class="ruby-value">100</span>, <span class="ruby-constant">WEST</span>)    
+    <span class="ruby-identifier">world</span>.<span class="ruby-identifier">start_threads</span>(<span class="ruby-value">10</span>)
+<span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

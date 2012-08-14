@@ -4,11 +4,10 @@
 #License: Creative Commons Attribution-Noncommercial-Share Alike 3.0 United States License
 
 $graphical = true
+$world_maker_size = 12 if $world_maker_size == nil
 require 'tk'
 require 'tkextlib/tcllib.rb'
 require 'robota'
-# require 'tk_robot_world'
-# require 'karel_window'
 
 =begin
   Each tool will drop the corresponding item at the mouse click location.
@@ -21,7 +20,7 @@ class WorldMaker < TkFrame
 
  def initialize()
   super()
-
+  @dirty = false
   $dialog = TkToplevel.new(self){
     title  ' World Creator '
   }
@@ -47,11 +46,23 @@ class WorldMaker < TkFrame
   horizontal_wall.grid(:row => 5, :column => 0)
   vertical_wall = TkButton.new($dialog, :text => "NS Wall", :command => lambda{north_south_wall})
   vertical_wall.grid(:row => 6, :column => 0)
-
+  $instance = self
  rescue
   puts e.to_s
   puts e.backtrace
  end
+
+  def dirty()
+     @dirty = true
+  end
+  
+  def check_dirty()
+      if @dirty
+         save_file()
+         @dirty = false
+         exit()
+      end   
+  end
   
   private
   def place_beeper
@@ -108,12 +119,15 @@ class WorldMaker < TkFrame
       # @show_file.delete(0, file.size + 1)
       # @show_file.configure(:state => :disabled)
       puts "file saved: " + file.to_s
+      @dirty = false
     end
   rescue Exception => e
            # puts e.to_s
            # puts e.backtrace  
     puts "No file selected"
   end
+  
+  private
 
   class BeeperScaler
     
@@ -122,6 +136,7 @@ class WorldMaker < TkFrame
     def BeeperScaler.instance
       return @@instance
     end
+    
     
     def scale(x, y)
       factor = $window.scale_factor
@@ -137,6 +152,7 @@ class WorldMaker < TkFrame
         return
       end
       $world.place_beepers(street, avenue, 1)
+      $instance.dirty()
     end
     
     def remove(x, y, all)
@@ -156,12 +172,11 @@ class WorldMaker < TkFrame
           $world.place_beepers(street, avenue, -1)
         end      
       end
+      $instance.dirty()
     end
     
   end
-  
-  private
-  
+    
   class HorizontalWallScaler
     
     @@instance = HorizontalWallScaler.new
@@ -183,6 +198,7 @@ class WorldMaker < TkFrame
         return
       end
      $world.place_wall_north_of(street, avenue)
+      $instance.dirty()
     end
 
     def remove(x, y, all)
@@ -192,6 +208,7 @@ class WorldMaker < TkFrame
         return
       end
      $world.remove_wall_north_of(street, avenue)     
+      $instance.dirty()
     end
   end
 
@@ -216,6 +233,7 @@ class WorldMaker < TkFrame
         return
       end
      $world.place_wall_east_of(street, avenue)
+      $instance.dirty()
     end
 
     def remove(x, y, all)
@@ -225,6 +243,7 @@ class WorldMaker < TkFrame
         return
       end
      $world.remove_wall_east_of(street, avenue)
+      $instance.dirty()
     end
   end
    
@@ -233,16 +252,21 @@ end
 
 # create the dialog and show it, along with a world
 def task
-  # $window.place_beeper(1, 1, 2)
-  $maker = WorldMaker.new()
+   $maker = WorldMaker.new()
+   class << $window # give the window a new closer
+      def end_program(menu)
+         $instance.check_dirty()
+      end
+   end
   
 rescue Exception  => e
            puts e.to_s
            puts e.backtrace  
 end
 
-if __FILE__ == $0
-  $window = window(12, 100)
-  $window.run{task}
-
+ if __FILE__ == $0
+   $window = window($world_maker_size, 100)
+   $window.run do
+      task
+   end
 end

@@ -5,21 +5,16 @@
 
 <html>
 <head>
-  <title>remove_beeper (RobotWorld)</title>
+  <title>show_world (RobotWorld)</title>
   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
   <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
 </head>
 <body class="standalone-code">
-  <pre><span class="ruby-comment cmt"># File karel/robot_world.rb, line 64</span>
-  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">remove_beeper</span>(<span class="ruby-identifier">street</span>, <span class="ruby-identifier">avenue</span>)
-    <span class="ruby-identifier">key</span> = [<span class="ruby-identifier">street</span>, <span class="ruby-identifier">avenue</span>]   
-    <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@Beepers</span>[<span class="ruby-identifier">key</span>] <span class="ruby-operator">==</span> <span class="ruby-constant">Robota</span><span class="ruby-operator">::</span><span class="ruby-constant">INFINITY</span>
-    <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@Beepers</span>[<span class="ruby-identifier">key</span>] <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
-      <span class="ruby-ivar">@Beepers</span>[<span class="ruby-identifier">key</span>] <span class="ruby-operator">-=</span> <span class="ruby-value">1</span>
-    <span class="ruby-keyword kw">else</span>
-      <span class="ruby-identifier">raise</span> <span class="ruby-constant">NoBeepers</span>, <span class="ruby-node">&quot;(#{street}, #{avenue})&quot;</span>
-    <span class="ruby-keyword kw">end</span>
-    <span class="ruby-keyword kw">nil</span>
-  <span class="ruby-keyword kw">end</span></pre>
+  <pre><span class="ruby-comment cmt"># File karel/robot_world.rb, line 208</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_world</span>(<span class="ruby-identifier">startStreet</span>=<span class="ruby-value">1</span>, <span class="ruby-identifier">startAvenue</span>=<span class="ruby-value">1</span>, <span class="ruby-identifier">streetsTowardNorth</span>=<span class="ruby-value">10</span>, <span class="ruby-identifier">avenuesTowardEast</span>=<span class="ruby-value">10</span>)
+        <span class="ruby-identifier">display</span> = <span class="ruby-identifier">get_display</span>(<span class="ruby-identifier">startStreet</span>, <span class="ruby-identifier">startAvenue</span>, <span class="ruby-identifier">streetsTowardNorth</span>, <span class="ruby-identifier">avenuesTowardEast</span>)
+        <span class="ruby-identifier">dump_display</span>(<span class="ruby-identifier">display</span>, <span class="ruby-identifier">startStreet</span>, <span class="ruby-identifier">startAvenue</span>, <span class="ruby-identifier">streetsTowardNorth</span>, <span class="ruby-identifier">avenuesTowardEast</span>)
+        <span class="ruby-keyword kw">nil</span>
+    <span class="ruby-keyword kw">end</span></pre>
 </body>
 </html>

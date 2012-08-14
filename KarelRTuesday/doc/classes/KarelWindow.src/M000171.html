@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>new (KarelWindow)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File karel/karel_window.rb, line 161</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">streets</span>, <span class="ruby-identifier">avenues</span>, <span class="ruby-identifier">size</span> = <span class="ruby-identifier">$window_bottom</span>)
+    <span class="ruby-keyword kw">super</span>()
+    
+    <span class="ruby-ivar">@root</span> = <span class="ruby-constant">TkRoot</span>.<span class="ruby-identifier">new</span>{
+        <span class="ruby-identifier">title</span>  <span class="ruby-value str">' Karel\'s World '</span>
+        <span class="ruby-identifier">width</span> <span class="ruby-identifier">size</span> <span class="ruby-operator">+</span> <span class="ruby-value">60</span>
+        <span class="ruby-identifier">height</span> <span class="ruby-identifier">size</span>
+        <span class="ruby-identifier">background</span> <span class="ruby-identifier">:white</span>
+    }
+
+    <span class="ruby-identifier">$smallImages</span> = <span class="ruby-identifier">streets</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">9</span>
+    <span class="ruby-identifier">$window_bottom</span> = <span class="ruby-identifier">size</span>
+    <span class="ruby-ivar">@height</span> = <span class="ruby-identifier">size</span>
+    <span class="ruby-identifier">geometryString</span> = (<span class="ruby-identifier">$window_bottom</span> <span class="ruby-operator">+</span> <span class="ruby-value">80</span>).<span class="ruby-identifier">to_s</span> <span class="ruby-operator">+</span> <span class="ruby-value str">'x'</span> <span class="ruby-operator">+</span> (<span class="ruby-identifier">$window_bottom</span> <span class="ruby-operator">+</span> <span class="ruby-value">65</span>).<span class="ruby-identifier">to_s</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;+55+25&quot;</span> <span class="ruby-comment cmt"># 820 + 60 for the speed buttons</span>
+    <span class="ruby-ivar">@root</span>.<span class="ruby-identifier">geometry</span>(<span class="ruby-identifier">newGeometry</span> = <span class="ruby-identifier">geometryString</span>)
+    
+    <span class="ruby-identifier">bar</span> = <span class="ruby-constant">TkMenu</span>.<span class="ruby-identifier">new</span>
+    
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">save</span>(<span class="ruby-identifier">menu</span>)
+      <span class="ruby-identifier">file</span> = <span class="ruby-constant">Tk</span>.<span class="ruby-identifier">getSaveFile</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">file</span>
+        <span class="ruby-identifier">$world</span>.<span class="ruby-identifier">save_world</span>(<span class="ruby-identifier">file</span>)
+        <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;file saved: &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">file</span>.<span class="ruby-identifier">to_s</span>
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">Exception</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+        <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;No file selected&quot;</span>
+    <span class="ruby-keyword kw">end</span>
+    
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">pause</span>(<span class="ruby-identifier">menu</span>)
+      <span class="ruby-identifier">$world</span>.<span class="ruby-identifier">pause_all</span>()
+    <span class="ruby-keyword kw">end</span>
+        
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">toggle_trace</span>(<span class="ruby-identifier">menu</span>)
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">$tracing</span> <span class="ruby-operator">==</span> <span class="ruby-keyword kw">nil</span>
+        <span class="ruby-identifier">$tracing</span> = <span class="ruby-keyword kw">false</span>
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-identifier">$tracing</span> = <span class="ruby-operator">!</span> <span class="ruby-identifier">$tracing</span>
+    <span class="ruby-keyword kw">end</span>
+           
+        <span class="ruby-identifier">fil</span> = <span class="ruby-constant">TkMenu</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">:font</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'Monaco'</span>)
+        <span class="ruby-identifier">fil</span>.<span class="ruby-identifier">add_command</span>(<span class="ruby-identifier">:label</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'Pause All     ^P'</span>, <span class="ruby-identifier">:command</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">lambda</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">x</span>=<span class="ruby-value str">'Pause Robots'</span><span class="ruby-operator">|</span> <span class="ruby-identifier">pause</span>(<span class="ruby-identifier">x</span>)})
+        <span class="ruby-identifier">fil</span>.<span class="ruby-identifier">add_command</span>(<span class="ruby-identifier">:label</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'Toggle Trace  ^T'</span>, <span class="ruby-identifier">:command</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">lambda</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">x</span>=<span class="ruby-value str">'Toggle Trace'</span><span class="ruby-operator">|</span> <span class="ruby-identifier">toggle_trace</span>(<span class="ruby-identifier">x</span>)})
+        <span class="ruby-identifier">fil</span>.<span class="ruby-identifier">add_command</span>(<span class="ruby-identifier">:label</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'Save World    ^S'</span>, <span class="ruby-identifier">:command</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">lambda</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">x</span>=<span class="ruby-value str">'Save World'</span><span class="ruby-operator">|</span> <span class="ruby-identifier">save</span>(<span class="ruby-identifier">x</span>)})
+        <span class="ruby-identifier">fil</span>.<span class="ruby-identifier">add_command</span>(<span class="ruby-identifier">:label</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'Quit          ^Q'</span>, <span class="ruby-identifier">:command</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">lambda</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">x</span>=<span class="ruby-value str">'Quit'</span><span class="ruby-operator">|</span> <span class="ruby-identifier">end_program</span>(<span class="ruby-identifier">x</span>)})
+        <span class="ruby-identifier">bar</span>.<span class="ruby-identifier">add_cascade</span>(<span class="ruby-identifier">:label</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">:Karel</span>, <span class="ruby-identifier">:menu</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">fil</span>)
+        <span class="ruby-ivar">@root</span>.<span class="ruby-identifier">configure</span>(<span class="ruby-identifier">:menu</span> =<span class="ruby-operator">&gt;</span>  <span class="ruby-identifier">bar</span>)   
+        
+        <span class="ruby-identifier">bind_all</span>(<span class="ruby-value str">'Command-q'</span>){<span class="ruby-identifier">end_program</span>(<span class="ruby-value str">'Command-q'</span>)} <span class="ruby-comment cmt"># Mac standard</span>
+        <span class="ruby-identifier">bind_all</span>(<span class="ruby-value str">'Control-q'</span>){<span class="ruby-identifier">end_program</span>(<span class="ruby-value str">'Control-q'</span>)} <span class="ruby-comment cmt"># Windows</span>
+        <span class="ruby-identifier">bind_all</span>(<span class="ruby-value str">'Command-s'</span>){<span class="ruby-identifier">save</span>(<span class="ruby-value str">'Command-s'</span>)} <span class="ruby-comment cmt"># Mac standard</span>
+        <span class="ruby-identifier">bind_all</span>(<span class="ruby-value str">'Control-s'</span>){<span class="ruby-identifier">save</span>(<span class="ruby-value str">'Control-s'</span>)} <span class="ruby-comment cmt"># Windows</span>
+        <span class="ruby-identifier">bind_all</span>(<span class="ruby-value str">'Command-p'</span>){<span class="ruby-identifier">pause</span>(<span class="ruby-value str">'Command-p'</span>)} <span class="ruby-comment cmt"># Mac standard</span>
+        <span class="ruby-identifier">bind_all</span>(<span class="ruby-value str">'Control-p'</span>){<span class="ruby-identifier">pause</span>(<span class="ruby-value str">'Control-p'</span>)} <span class="ruby-comment cmt"># Windows</span>
+        <span class="ruby-identifier">bind_all</span>(<span class="ruby-value str">'Command-t'</span>){<span class="ruby-identifier">toggle_trace</span>(<span class="ruby-value str">'Command-t'</span>)} <span class="ruby-comment cmt"># Mac standard</span>
+        <span class="ruby-identifier">bind_all</span>(<span class="ruby-value str">'Control-t'</span>){<span class="ruby-identifier">toggle_trace</span>(<span class="ruby-value str">'Control-t'</span>)} <span class="ruby-comment cmt"># Windows</span>
+        <span class="ruby-identifier">bind_all</span>(<span class="ruby-value str">'Destroy'</span>){<span class="ruby-identifier">end_program</span>(<span class="ruby-value str">'Window Closed'</span>)}
+        
+        <span class="ruby-ivar">@_streets</span> = <span class="ruby-identifier">streets</span>
+        <span class="ruby-ivar">@_avenues</span> = <span class="ruby-identifier">streets</span> <span class="ruby-comment cmt"># sic Avenues ignored</span>
+        <span class="ruby-ivar">@_gBeepers</span> = {} <span class="ruby-comment cmt">#locations of the beeper imagess</span>
+        <span class="ruby-ivar">@_contents</span> = [] <span class="ruby-comment cmt"># , walls, beepers that need to move on a rescale</span>
+        <span class="ruby-ivar">@_robots</span> = []
+        <span class="ruby-ivar">@_walls</span> = [] 
+        <span class="ruby-identifier">top</span> = <span class="ruby-identifier">winfo_toplevel</span>()
+        <span class="ruby-constant">TkGrid</span>.<span class="ruby-identifier">rowconfigure</span>(<span class="ruby-identifier">top</span>, <span class="ruby-value">2</span>, <span class="ruby-identifier">:weight</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>)
+        <span class="ruby-constant">TkGrid</span>.<span class="ruby-identifier">columnconfigure</span>(<span class="ruby-identifier">top</span>, <span class="ruby-value">0</span>, <span class="ruby-identifier">:weight</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>)
+        
+        <span class="ruby-constant">TkGrid</span>.<span class="ruby-identifier">rowconfigure</span>(<span class="ruby-keyword kw">self</span>, <span class="ruby-value">2</span>, <span class="ruby-identifier">:weight</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>)
+        <span class="ruby-constant">TkGrid</span>.<span class="ruby-identifier">columnconfigure</span>(<span class="ruby-keyword kw">self</span>, <span class="ruby-value">0</span>, <span class="ruby-identifier">:weight</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>)
+        
+        
+        <span class="ruby-constant">TkGrid</span>.<span class="ruby-identifier">rowconfigure</span>(<span class="ruby-ivar">@root</span>, <span class="ruby-value">2</span>, <span class="ruby-identifier">:weight</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>)
+        <span class="ruby-constant">TkGrid</span>.<span class="ruby-identifier">columnconfigure</span>(<span class="ruby-ivar">@root</span>, <span class="ruby-value">0</span>, <span class="ruby-identifier">:weight</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>)
+        
+        <span class="ruby-ivar">@speedLevel</span> = <span class="ruby-constant">TkLabel</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">:text</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Speed &quot;</span> <span class="ruby-operator">+</span> (<span class="ruby-value">100</span><span class="ruby-operator">-</span><span class="ruby-ivar">@@delay</span>).<span class="ruby-identifier">to_s</span>)
+        <span class="ruby-ivar">@speedLevel</span>.<span class="ruby-identifier">grid</span>(<span class="ruby-identifier">:row</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>, <span class="ruby-identifier">:column</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>, <span class="ruby-identifier">:sticky=</span><span class="ruby-operator">&gt;</span><span class="ruby-value str">&quot;news&quot;</span>)
+
+        <span class="ruby-identifier">slower</span> = <span class="ruby-constant">TkButton</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">:text</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Slower&quot;</span>, <span class="ruby-identifier">:command</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">lambda</span>{
+          <span class="ruby-ivar">@@delay</span> = <span class="ruby-value">1</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@@delay</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+          <span class="ruby-ivar">@@delay</span> = [(<span class="ruby-ivar">@@delay</span> <span class="ruby-operator">+</span> <span class="ruby-value">0</span><span class="ruby-value">.10</span><span class="ruby-operator">*</span><span class="ruby-ivar">@@delay</span>).<span class="ruby-identifier">ceil</span>, <span class="ruby-value">100</span>].<span class="ruby-identifier">min</span>
+          <span class="ruby-constant">RobotWorld</span>.<span class="ruby-identifier">set_speed</span> <span class="ruby-value">100</span> <span class="ruby-operator">-</span> <span class="ruby-ivar">@@delay</span>
+          })
+        <span class="ruby-identifier">slower</span>.<span class="ruby-identifier">grid</span>(<span class="ruby-identifier">:row</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>, <span class="ruby-identifier">:column</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>)
+        
+        <span class="ruby-identifier">faster</span> = <span class="ruby-constant">TkButton</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">:text</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Faster&quot;</span>, <span class="ruby-identifier">:command</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">lambda</span>{
+          <span class="ruby-ivar">@@delay</span> = [(<span class="ruby-ivar">@@delay</span> <span class="ruby-operator">-</span> <span class="ruby-value">0</span><span class="ruby-value">.10</span><span class="ruby-operator">*</span><span class="ruby-ivar">@@delay</span>).<span class="ruby-identifier">floor</span>, <span class="ruby-value">0</span>].<span class="ruby-identifier">max</span>
+          <span class="ruby-constant">RobotWorld</span>.<span class="ruby-identifier">set_speed</span> <span class="ruby-value">100</span> <span class="ruby-operator">-</span> <span class="ruby-ivar">@@delay</span>
+           })
+        <span class="ruby-identifier">faster</span>.<span class="ruby-identifier">grid</span>(<span class="ruby-identifier">:row</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>, <span class="ruby-identifier">:column</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>)
+        
+        <span class="ruby-ivar">@height</span> = <span class="ruby-ivar">@oldHeight</span> = <span class="ruby-identifier">$window_bottom</span>
+        <span class="ruby-ivar">@_bottom</span> = <span class="ruby-identifier">$window_bottom</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">$inset</span>
+        <span class="ruby-ivar">@_left</span> = <span class="ruby-identifier">$inset</span>
+        <span class="ruby-ivar">@_top</span> = <span class="ruby-identifier">$inset</span>
+        <span class="ruby-ivar">@_right</span> = <span class="ruby-ivar">@height</span>
+        <span class="ruby-ivar">@inset</span> = <span class="ruby-identifier">$inset</span>
+        
+        <span class="ruby-ivar">@canvas</span> = <span class="ruby-constant">Canvas</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">root</span>, <span class="ruby-identifier">:height</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">$window_bottom</span>, <span class="ruby-identifier">:width</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">$window_bottom</span>, <span class="ruby-identifier">:bg</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'white'</span>)
+      
+        <span class="ruby-ivar">@canvas</span>.<span class="ruby-identifier">grid</span>(<span class="ruby-identifier">:row</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">2</span>, <span class="ruby-identifier">:column</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>, <span class="ruby-identifier">:sticky=</span><span class="ruby-operator">&gt;</span><span class="ruby-value str">&quot;news&quot;</span>)
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">$smallImages</span>  
+        <span class="ruby-identifier">image1</span> = <span class="ruby-constant">TkPhotoImage</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">:file</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">$images_base</span><span class="ruby-operator">+</span><span class="ruby-value str">'kareln.gif'</span>)
+        <span class="ruby-identifier">image2</span> = <span class="ruby-constant">TkPhotoImage</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">:file</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">$images_base</span><span class="ruby-operator">+</span><span class="ruby-value str">'karelw.gif'</span>)
+        <span class="ruby-identifier">image3</span> = <span class="ruby-constant">TkPhotoImage</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">:file</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">$images_base</span><span class="ruby-operator">+</span><span class="ruby-value str">'karels.gif'</span>)
+        <span class="ruby-identifier">image4</span> = <span class="ruby-constant">TkPhotoImage</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">:file</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">$images_base</span><span class="ruby-operator">+</span><span class="ruby-value str">'karele.gif'</span>)
+        
+        <span class="ruby-identifier">image5</span> = <span class="ruby-constant">TkPhotoImage</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">:file</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">$images_base</span><span class="ruby-operator">+</span><span class="ruby-value str">'karelnOff.gif'</span>)
+        <span class="ruby-identifier">image6</span> = <span class="ruby-constant">TkPhotoImage</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">:file</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">$images_base</span><span class="ruby-operator">+</span><span class="ruby-value str">'karelwOff.gif'</span>)
+        <span class="ruby-identifier">image7</span> = <span class="ruby-constant">TkPhotoImage</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">:file</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">$images_base</span><span class="ruby-operator">+</span><span class="ruby-value str">'karelsOff.gif'</span>)
+        <span class="ruby-identifier">image8</span> = <span class="ruby-constant">TkPhotoImage</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">:file</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">$images_base</span><span class="ruby-operator">+</span><span class="ruby-value str">'kareleOff.gif'</span>)
+      <span class="ruby-keyword kw">else</span> <span class="ruby-comment cmt"># large images</span>
+        <span class="ruby-identifier">image1</span> = <span class="ruby-constant">TkPhotoImage</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">:file</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">$images_base</span><span class="ruby-operator">+</span><span class="ruby-value str">'karelnLn.gif'</span>)
+        <span class="ruby-identifier">image2</span> = <span class="ruby-constant">TkPhotoImage</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">:file</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">$images_base</span><span class="ruby-operator">+</span><span class="ruby-value str">'karelwLn.gif'</span>)
+        <span class="ruby-identifier">image3</span> = <span class="ruby-constant">TkPhotoImage</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">:file</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">$images_base</span><span class="ruby-operator">+</span><span class="ruby-value str">'karelsLn.gif'</span>)
+        <span class="ruby-identifier">image4</span> = <span class="ruby-constant">TkPhotoImage</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">:file</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">$images_base</span><span class="ruby-operator">+</span><span class="ruby-value str">'kareleLn.gif'</span>)
+        
+        <span class="ruby-identifier">image5</span> = <span class="ruby-constant">TkPhotoImage</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">:file</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">$images_base</span><span class="ruby-operator">+</span><span class="ruby-value str">'karelnOffLn.gif'</span>)
+        <span class="ruby-identifier">image6</span> = <span class="ruby-constant">TkPhotoImage</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">:file</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">$images_base</span><span class="ruby-operator">+</span><span class="ruby-value str">'karelwOffLn.gif'</span>)
+        <span class="ruby-identifier">image7</span> = <span class="ruby-constant">TkPhotoImage</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">:file</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">$images_base</span><span class="ruby-operator">+</span><span class="ruby-value str">'karelsOffLn.gif'</span>)
+        <span class="ruby-identifier">image8</span> = <span class="ruby-constant">TkPhotoImage</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">:file</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">$images_base</span><span class="ruby-operator">+</span><span class="ruby-value str">'kareleOffLn.gif'</span>)
+      <span class="ruby-keyword kw">end</span>         
+        <span class="ruby-identifier">$imageMapOn</span>[<span class="ruby-constant">NORTH</span>] = <span class="ruby-identifier">image1</span> <span class="ruby-comment cmt">#knOn</span>
+        <span class="ruby-identifier">$imageMapOn</span>[<span class="ruby-constant">WEST</span>] = <span class="ruby-identifier">image2</span> <span class="ruby-comment cmt">#kwOn</span>
+        <span class="ruby-identifier">$imageMapOn</span>[<span class="ruby-constant">SOUTH</span>] = <span class="ruby-identifier">image3</span> <span class="ruby-comment cmt">#ksOn</span>
+        <span class="ruby-identifier">$imageMapOn</span>[<span class="ruby-constant">EAST</span>] = <span class="ruby-identifier">image4</span> <span class="ruby-comment cmt">#$keOn</span>
+        
+        <span class="ruby-identifier">$imageMapOff</span>[<span class="ruby-constant">NORTH</span>] = <span class="ruby-identifier">image5</span> <span class="ruby-comment cmt">#knOff</span>
+        <span class="ruby-identifier">$imageMapOff</span>[<span class="ruby-constant">WEST</span>] = <span class="ruby-identifier">image6</span> <span class="ruby-comment cmt">#kwOff</span>
+        <span class="ruby-identifier">$imageMapOff</span>[<span class="ruby-constant">SOUTH</span>] = <span class="ruby-identifier">image7</span> <span class="ruby-comment cmt">#ksOff</span>
+        <span class="ruby-identifier">$imageMapOff</span>[<span class="ruby-constant">EAST</span>] = <span class="ruby-identifier">image8</span> <span class="ruby-comment cmt">#keOff</span>
+        
+        <span class="ruby-identifier">geometry</span>(<span class="ruby-ivar">@height</span>)
+        <span class="ruby-identifier">set_size</span>(<span class="ruby-identifier">streets</span>)
+
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

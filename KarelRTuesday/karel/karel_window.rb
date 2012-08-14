@@ -138,6 +138,9 @@ class KarelWindow < TkFrame
   @@delay = 20
   # @@showing_pause = false
   # @@threads_paused = true
+  $beeper_color = :black if $beeper_color == nil
+  $street_color = :red if $street_color == nil
+  $wall_color = :black if $wall_color == nil
   
   def cursor(which) # use "dot" or "X_cursor" or "right_side" or "top_side"
   begin
@@ -150,6 +153,11 @@ end
     @_streets
   end
   
+    # Terminate the program and close the window. 
+    def end_program(menu)
+       exit()
+    end
+
   def initialize(streets, avenues, size = $window_bottom)
     super()
     
@@ -167,9 +175,6 @@ end
     @root.geometry(newGeometry = geometryString)
     
     bar = TkMenu.new
-    def end_program(menu)
-       exit()
-    end
     
     def save(menu)
       file = Tk.getSaveFile
@@ -310,10 +315,10 @@ end
     @_streets.times do |i|
       x,y = scale_to_pixels(i + 1, 0.5)
       tx,ty = scale_to_pixels(i + 1, @_streets + 0.5)
-      @_walls << TkcLine.new(@canvas,x,y,tx,ty, :fill => :red)
+      @_walls << TkcLine.new(@canvas,x,y,tx,ty, :fill => $street_color)
       x, y = scale_to_pixels(0.5, i + 1)
       tx, ty = scale_to_pixels(@_streets + 0.5, i + 1)
-      @_walls << TkcLine.new(@canvas,x,y,tx,ty, :fill => :red)
+      @_walls << TkcLine.new(@canvas,x,y,tx,ty, :fill => $street_color)
     end
   end
   
@@ -321,6 +326,14 @@ end
     x, y = scale_to_pixels(0.5, 0.5)
     @_walls << TkcLine.new(@canvas, x, 0, x, y, :width => 2)
     @_walls << TkcLine.new(@canvas, x, y, @_right + $inset, y, :width => 2)
+    if $closed_world
+       (@_streets - 1).times do |street|
+          $world.place_wall_east_of(street + 1 , @_avenues - 1)
+          $world.place_wall_north_of(@_streets - 1, street + 1)
+          place_wall_east_of(street + 1 , @_avenues - 1)
+          place_wall_north_of(@_streets - 1, street + 1)
+       end
+    end
   end
   
   def label_streets_avenues
@@ -462,9 +475,9 @@ end
             where << scaler(@street+sizeFactor, @avenue)
             where << scaler(@street-placeFactor, @avenue-placeFactor)
             where << scaler(@street-placeFactor, @avenue+placeFactor)
-            oval = TkcPolygon.new(@canvas, where, :fill => :black, :smooth => false, :tags=>@tag)
+            oval = TkcPolygon.new(@canvas, where, :fill => $beeper_color, :smooth => false, :tags=>@tag)
          else
-            oval = TkcOval.new(@canvas, x, y, x + scale_factor*sizeFactor, y + scale_factor*sizeFactor, :fill=> :black, :tags => @tag)
+            oval = TkcOval.new(@canvas, x, y, x + scale_factor*sizeFactor, y + scale_factor*sizeFactor, :fill=> $beeper_color, :tags => @tag)
          end
             TkcText.new(oval, x + scale_factor*placeFactor,  y + scale_factor*placeFactor,
                    :tags => @tag, :width => 0, :text =>val, :fill => :white)
@@ -495,10 +508,10 @@ end
       @scale_factor = lambda{window.scale_factor}
       if@isVertical
         x, y = scaler(street - 0.5, avenue + 0.5)
-        @code = TkcLine.new(@canvas, x, y, x, y - scale_factor, :width => 2, :fill => :black)
+        @code = TkcLine.new(@canvas, x, y, x, y - scale_factor, :width => 2, :fill => $wall_color)
       else 
         x, y = scaler(street + 0.5, avenue - 0.5)
-        @code = TkcLine.new(@canvas, x, y, x + scale_factor, y, :width => 2, :fill => :black)
+        @code = TkcLine.new(@canvas, x, y, x + scale_factor, y, :width => 2, :fill => $wall_color)
       end
     end
     

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>move (UrRobot)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File karel/ur_robot.rb, line 59</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">move</span>
+    <span class="ruby-identifier">pause</span>(<span class="ruby-value str">&quot;move&quot;</span>)
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">RobotNotRunning</span>, <span class="ruby-value str">&quot; while moving&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span> <span class="ruby-ivar">@runstate</span>
+    <span class="ruby-keyword kw">begin</span>
+      <span class="ruby-ivar">@street</span> = <span class="ruby-ivar">@direction</span>.<span class="ruby-identifier">next_street</span>(<span class="ruby-ivar">@street</span>, <span class="ruby-ivar">@avenue</span>)
+      <span class="ruby-ivar">@avenue</span> = <span class="ruby-ivar">@direction</span>.<span class="ruby-identifier">next_avenue</span>(<span class="ruby-ivar">@street</span>, <span class="ruby-ivar">@avenue</span>)
+      <span class="ruby-comment cmt">#    if @street &lt; 1 || @avenue &lt; 1</span>
+      <span class="ruby-comment cmt">#      self.turn_off</span>
+      <span class="ruby-comment cmt">#      raise  FrontIsBlocked, &quot;(&quot; + @street.to_s + &quot;, &quot; + @avenue.to_s + &quot;)&quot;</span>
+      <span class="ruby-comment cmt">#    end</span>
+    <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">FrontIsBlocked</span>
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">turn_off</span>
+      <span class="ruby-identifier">raise</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-identifier">changed</span>
+    <span class="ruby-identifier">notify_observers</span>(<span class="ruby-keyword kw">self</span>, <span class="ruby-constant">MOVE_ACTION</span>, <span class="ruby-identifier">state</span>)
+    <span class="ruby-keyword kw">self</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>
